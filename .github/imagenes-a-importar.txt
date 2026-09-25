@@ -1,0 +1,4 @@
+# nombre ancho url  (lo procesa .github/workflows/importar-imagenes.yml)
+playa-tenerife-hero 2400 https://d8j0ntlcm91z4.cloudfront.net/user_3JcKwAqdGlKCB6S0hDLoMZ4oyWH/hf_20260925_234539_7d6b1fe6-1cc4-4940-9f00-a27b10d2d2ce.png
+apartamento-bienvenida 1168 https://d8j0ntlcm91z4.cloudfront.net/user_3JcKwAqdGlKCB6S0hDLoMZ4oyWH/hf_20260925_234539_a386112d-9570-429c-b91c-59b139c6cc14.png
+villa-piscina-tenerife 1168 https://d8j0ntlcm91z4.cloudfront.net/user_3JcKwAqdGlKCB6S0hDLoMZ4oyWH/hf_20260925_234541_2baeccf3-82d7-4d15-91bf-38dda9a9f1e5.png

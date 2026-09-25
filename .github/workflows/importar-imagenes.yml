@@ -1,0 +1,37 @@
+# Workflow temporal: descarga las imágenes de .github/imagenes-a-importar.txt,
+# las convierte a WebP y las guarda en client/public/images.
+name: Importar imágenes
+
+on:
+  push:
+    paths:
+      - ".github/imagenes-a-importar.txt"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  importar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Instalar cwebp
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq webp
+      - name: Descargar y convertir
+        run: |
+          set -euo pipefail
+          mkdir -p client/public/images
+          grep -v '^#' .github/imagenes-a-importar.txt | while read -r name width url; do
+            [ -z "${name:-}" ] && continue
+            curl -fsSL "$url" -o "/tmp/$name.png"
+            cwebp -quiet -q 82 -resize "$width" 0 "/tmp/$name.png" -o "client/public/images/$name.webp"
+          done
+          ls -la client/public/images
+      - name: Guardar en el repositorio
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add client/public/images
+          git commit -m "Importar imágenes generadas" || exit 0
+          git push
