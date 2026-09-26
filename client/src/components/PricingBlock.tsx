@@ -40,8 +40,8 @@ export default function PricingBlock({ lang = "es", showDetailsLink = true }: { 
     <div className="grid gap-14 lg:grid-cols-12 lg:gap-20">
       <div className="reveal lg:col-span-5">
         <p className="eyebrow">{en ? "Our fee" : "Lo que cobramos"}</p>
-        <p className="mt-8 font-display text-[1rem] font-light text-ink-500 sm:mt-10">{en ? "From" : "Desde el"}</p>
-        <p className="font-display text-[8rem] font-extralight leading-[0.85] tracking-[-0.04em] text-ink sm:text-[10rem] lg:text-[12rem]">
+        <p className="mt-8 font-display text-[1rem] font-normal text-ink-500 sm:mt-10">{en ? "From" : "Desde el"}</p>
+        <p className="font-display text-[8rem] font-light leading-[0.85] tracking-[-0.04em] text-ink sm:text-[10rem] lg:text-[12rem]">
           {MANAGEMENT_FEE_PERCENT}
           <span className="text-sand-500">%</span>
         </p>
@@ -75,7 +75,7 @@ export default function PricingBlock({ lang = "es", showDetailsLink = true }: { 
         </div>
         <div className="reveal mt-10 flex flex-col gap-8 sm:flex-row sm:items-end sm:justify-between">
           <div className="max-w-md">
-            <p className="text-[0.82rem] leading-relaxed text-ink-400">
+            <p className="text-[0.88rem] leading-relaxed text-ink-500">
               {en
                 ? "The property's own running costs (utilities, community fees, IBI, insurance), repairs and replacements, platform fees and taxes are separate from the management fee and are set out in the proposal."
                 : "Los gastos propios de la vivienda (suministros, comunidad, IBI, seguro), las reparaciones y reposiciones, las comisiones de las plataformas y los impuestos son independientes de la comisión y se detallan en la propuesta."}

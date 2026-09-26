@@ -112,14 +112,14 @@ export default function Tarifas() {
             ].map(row => (
               <div key={row.label} className="flex items-baseline justify-between gap-6 border-b border-ink/10 px-6 py-6 sm:px-10">
                 <span className="label text-ink-500">{row.label}</span>
-                <span className="font-display text-[1.8rem] font-light text-ink">{row.value}</span>
+                <span className="font-display text-[1.8rem] font-normal text-ink">{row.value}</span>
               </div>
             ))}
             <div className="flex items-baseline justify-between gap-6 px-6 py-7 sm:px-10">
               <span className="label text-sand-600">Para ti*</span>
-              <span className="font-display text-5xl font-light text-ink">{formatEs(EXAMPLE.gross - fee)} €</span>
+              <span className="font-display text-5xl font-normal text-ink">{formatEs(EXAMPLE.gross - fee)} €</span>
             </div>
-            <p className="border-t border-ink/10 px-6 py-5 text-[0.8rem] leading-relaxed text-ink-400 sm:px-10">
+            <p className="border-t border-ink/10 px-6 py-5 text-[0.88rem] leading-relaxed text-ink-500 sm:px-10">
               *Ejemplo ilustrativo con cifras redondas, antes de los gastos propios de la vivienda, las comisiones de las plataformas y los impuestos.
             </p>
           </div>
@@ -153,7 +153,7 @@ export default function Tarifas() {
               <tbody>
                 {COMPARISON.map(row => (
                   <tr key={row.task} className="border-b border-ink/10">
-                    <th scope="row" className="py-6 pr-6 align-top font-display text-[1.2rem] font-light text-ink">
+                    <th scope="row" className="py-6 pr-6 align-top font-display text-[1.2rem] font-normal text-ink">
                       {row.task}
                     </th>
                     <td className="py-6 pr-6 align-top text-ink-400">
@@ -186,7 +186,7 @@ export default function Tarifas() {
             {NOT_INCLUDED.map((item, i) => (
               <li key={item.title} className={`reveal border-b border-ink/15 py-9 lg:border-b-0 lg:pr-10 ${i > 0 ? "lg:border-l lg:pl-10" : ""}`}>
                 <p className="label text-sand-600">{String(i + 1).padStart(2, "0")}</p>
-                <h3 className="mt-4 font-display text-[1.7rem] font-light leading-tight text-ink">{item.title}</h3>
+                <h3 className="mt-4 font-display text-[1.7rem] font-normal leading-tight text-ink">{item.title}</h3>
                 <p className="mt-4 leading-[1.75] text-ink-500">{item.text}</p>
               </li>
             ))}

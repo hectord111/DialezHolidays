@@ -116,7 +116,7 @@ export default function Canarias() {
                 <span className="icon-frame" aria-hidden>
                   <item.icon className="h-[1.15rem] w-[1.15rem]" strokeWidth={1.4} />
                 </span>
-                <h3 className="mt-6 font-display text-[1.6rem] font-light leading-tight text-ink">{item.title}</h3>
+                <h3 className="mt-6 font-display text-[1.6rem] font-normal leading-tight text-ink">{item.title}</h3>
                 <p className="mt-3 text-[0.95rem] leading-[1.75] text-ink-500">{item.text}</p>
               </li>
             ))}
@@ -150,9 +150,9 @@ export default function Canarias() {
           <ol className="border-t border-ink/15 lg:col-span-7">
             {RULES.map((rule, i) => (
               <li key={rule.title} className="reveal flex gap-6 border-b border-ink/15 py-8">
-                <span className="font-display text-2xl font-light text-sand-500">{String(i + 1).padStart(2, "0")}</span>
+                <span className="font-display text-2xl font-normal text-sand-500">{String(i + 1).padStart(2, "0")}</span>
                 <div>
-                  <h3 className="font-display text-[1.35rem] font-light leading-snug text-ink">{rule.title}</h3>
+                  <h3 className="font-display text-[1.35rem] font-normal leading-snug text-ink">{rule.title}</h3>
                   <p className="mt-3 leading-[1.75] text-ink-500">{rule.text}</p>
                 </div>
               </li>

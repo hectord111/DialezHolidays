@@ -27,9 +27,9 @@
 
   --color-ink: #16282c;
   --color-ink-700: #243a3e;
-  --color-ink-500: #4b5f63;
-  --color-ink-400: #6c7e81;
-  --color-ink-300: #9aa8aa;
+  --color-ink-500: #42565a;
+  --color-ink-400: #5b6d70;
+  --color-ink-300: #87989a;
 
   --color-sea: #2d6268;
   --color-whatsapp: #25d366;
@@ -127,9 +127,9 @@
     align-items: center;
     gap: 0.9rem;
     font-family: var(--font-sans);
-    font-size: 0.66rem;
-    font-weight: 500;
-    letter-spacing: 0.24em;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.22em;
     text-transform: uppercase;
     color: var(--color-sand-600);
   }
@@ -144,8 +144,8 @@
   }
   @media (min-width: 640px) {
     .eyebrow {
-      font-size: 0.7rem;
-      letter-spacing: 0.3em;
+      font-size: 0.74rem;
+      letter-spacing: 0.26em;
       gap: 1rem;
     }
     .eyebrow::before {
@@ -173,7 +173,7 @@
   /* Display headings: light Fraunces, tight tracking. */
   .display {
     font-family: var(--font-display);
-    font-weight: 300;
+    font-weight: 400;
     letter-spacing: -0.02em;
     line-height: 1.06;
     text-wrap: balance;
@@ -188,9 +188,9 @@
     min-height: 3.25rem;
     padding: 0.9rem 1.6rem;
     font-family: var(--font-sans);
-    font-size: 0.7rem;
-    font-weight: 600;
-    letter-spacing: 0.16em;
+    font-size: 0.74rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
     text-transform: uppercase;
     line-height: 1.2;
     text-align: center;
@@ -202,8 +202,8 @@
   @media (min-width: 640px) {
     .btn {
       padding-inline: 2rem;
-      font-size: 0.72rem;
-      letter-spacing: 0.22em;
+      font-size: 0.76rem;
+      letter-spacing: 0.18em;
     }
   }
   .btn-ink {
@@ -243,9 +243,9 @@
     gap: 0.5rem;
     border-bottom: 1px solid color-mix(in oklab, var(--color-sand-500) 60%, transparent);
     padding-bottom: 0.25rem;
-    font-size: 0.68rem;
-    font-weight: 600;
-    letter-spacing: 0.22em;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
     text-transform: uppercase;
     color: var(--color-ink);
     transition: border-color 0.3s;
@@ -268,9 +268,9 @@
   /* Small uppercase data label. */
   .label {
     font-family: var(--font-sans);
-    font-size: 0.64rem;
+    font-size: 0.7rem;
     font-weight: 600;
-    letter-spacing: 0.2em;
+    letter-spacing: 0.16em;
     text-transform: uppercase;
   }
 
@@ -392,7 +392,7 @@ details > summary::-webkit-details-marker {
 .article-content {
   font-size: 1.0625rem;
   line-height: 1.85;
-  color: var(--color-ink-500);
+  color: var(--color-ink-700);
 }
 .article-content > * + * {
   margin-top: 1.3em;
@@ -401,7 +401,7 @@ details > summary::-webkit-details-marker {
   font-family: var(--font-display);
   font-size: 2rem;
   line-height: 1.12;
-  font-weight: 300;
+  font-weight: 400;
   letter-spacing: -0.015em;
   color: var(--color-ink);
   margin-top: 2.4em;
@@ -461,7 +461,7 @@ details > summary::-webkit-details-marker {
   padding: 0.2em 0 0.2em 1.4em;
   font-family: var(--font-display);
   font-size: 1.25rem;
-  font-weight: 300;
+  font-weight: 400;
   font-style: italic;
   color: var(--color-ink);
 }
@@ -486,7 +486,7 @@ details > summary::-webkit-details-marker {
 }
 .article-content th {
   color: var(--color-ink);
-  font-size: 0.66rem;
+  font-size: 0.7rem;
   font-weight: 600;
   letter-spacing: 0.16em;
   text-transform: uppercase;

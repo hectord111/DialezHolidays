@@ -23,7 +23,7 @@ export default function PostCard({ post, featured = false, headingLevel = "h3" }
           <span aria-hidden className="h-px w-4 bg-ink/25" />
           <time dateTime={post.date}>{formatDate(post.date)}</time>
         </p>
-        <Heading className={`mt-4 font-display font-light leading-[1.12] tracking-[-0.01em] text-ink ${featured ? "text-[2rem] sm:text-5xl" : "text-[1.55rem]"}`}>
+        <Heading className={`mt-4 font-display font-normal leading-[1.12] tracking-[-0.01em] text-ink ${featured ? "text-[2rem] sm:text-5xl" : "text-[1.55rem]"}`}>
           <a href={`/blog/${post.slug}`} className="after:absolute after:inset-0">
             {post.title}
           </a>

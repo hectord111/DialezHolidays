@@ -17,7 +17,7 @@ import SectionHeading from "@/components/SectionHeading";
 import Timeline from "@/components/Timeline";
 import ZoneCards from "@/components/ZoneCards";
 import { HERO_IMAGES } from "@/data/images";
-import { BENEFITS, HOME_FAQS, OUTCOMES, PROCESS, STANDARD } from "@/data/service";
+import { BENEFITS, HOME_FAQS, PROCESS, STANDARD } from "@/data/service";
 import { MANAGEMENT_FEE_PERCENT, whatsappUrl } from "@/lib/contact";
 import { trackEvent } from "@/lib/tracking";
 
@@ -115,51 +115,10 @@ export default function Home() {
                 } ${i === 2 ? "lg:border-l lg:pl-8" : ""}`}
               >
                 <dt className="label order-2 leading-snug text-ink-500">{fact.label}</dt>
-                <dd className="order-1 font-display text-[1.75rem] font-light text-ink sm:text-3xl lg:text-4xl">{fact.value}</dd>
+                <dd className="order-1 font-display text-[1.75rem] font-normal text-ink sm:text-3xl lg:text-4xl">{fact.value}</dd>
               </div>
             ))}
           </dl>
-        </div>
-      </section>
-
-      {/* ── LO QUE CAMBIA PARA TI ────────────────────────────────────────── */}
-      <section className="section bg-ivory">
-        <div className="container">
-          <SectionHeading
-            eyebrow="Para el propietario"
-            title="Lo que cambia para ti."
-            intro="Somos una gestora de alquiler vacacional y Airbnb con equipo en Tenerife. Nos encargamos de tu vivienda de principio a fin, con estándar de hotel boutique."
-          />
-          <ol className="mt-12 grid border-t border-ink/15 sm:mt-16 lg:grid-cols-3">
-            {OUTCOMES.map((point, i) => (
-              <li
-                key={point.title}
-                className={`reveal border-b border-ink/15 py-9 sm:py-11 lg:border-b-0 lg:pr-12 ${i > 0 ? "lg:border-l lg:pl-10" : ""}`}
-                style={{ "--reveal-delay": `${i * 100}ms` } as React.CSSProperties}
-              >
-                <span className="icon-frame" aria-hidden>
-                  <point.icon className="h-[1.15rem] w-[1.15rem]" strokeWidth={1.4} />
-                </span>
-                <h3 className="mt-7 font-display text-[2.1rem] font-light leading-none tracking-[-0.01em] text-ink sm:text-[2.6rem]">{point.title}</h3>
-                <p className="mt-4 max-w-xs text-[0.98rem] leading-[1.75] text-ink-500">{point.text}</p>
-              </li>
-            ))}
-          </ol>
-
-          <div className="reveal mt-16 grid gap-6 sm:mt-20 lg:mt-24 lg:grid-cols-12 lg:gap-16">
-            <p className="order-2 max-w-xs self-end font-display text-lg font-light italic leading-snug text-ink-500 lg:order-1 lg:col-span-3">
-              Cada llegada, como la primera: preparada y presentada con estándar hotelero.
-            </p>
-            <div className="relative order-1 aspect-[3/2] overflow-hidden bg-sand-200 lg:order-2 lg:col-span-9">
-              <img
-                src="/images/terraza-vistas-mar-tenerife.webp"
-                alt="Terraza de una vivienda vacacional en Tenerife con sofás y desayuno frente a la costa al atardecer"
-                loading="lazy"
-                decoding="async"
-                className="absolute inset-0 h-full w-full object-cover"
-              />
-            </div>
-          </div>
         </div>
       </section>
 

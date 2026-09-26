@@ -162,7 +162,7 @@ export default function HomeEN() {
                 } ${i === 2 ? "lg:border-l lg:pl-8" : ""}`}
               >
                 <dt className="label order-2 leading-snug text-ink-500">{fact.label}</dt>
-                <dd className="order-1 font-display text-[1.75rem] font-light text-ink sm:text-3xl lg:text-4xl">{fact.value}</dd>
+                <dd className="order-1 font-display text-[1.75rem] font-normal text-ink sm:text-3xl lg:text-4xl">{fact.value}</dd>
               </div>
             ))}
           </dl>

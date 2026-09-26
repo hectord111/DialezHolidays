@@ -76,7 +76,7 @@ export default function SiteFooter({ lang = "es" }: { lang?: "es" | "en" }) {
           />
         </div>
 
-        <div className="mt-16 flex flex-col gap-4 border-t border-ink/10 pt-8 text-[0.8rem] text-ink-400 md:flex-row md:items-center md:justify-between">
+        <div className="mt-16 flex flex-col gap-4 border-t border-ink/10 pt-8 text-[0.86rem] text-ink-500 md:flex-row md:items-center md:justify-between">
           <span>
             © {new Date().getFullYear()} Dialez Holidays · {en ? "A brand of " : "Una marca de "}
             <a href="https://dialezproperties.es/" className="underline-offset-4 hover:text-ink hover:underline">

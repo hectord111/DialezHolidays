@@ -127,7 +127,7 @@ export default function EstimateForm({ lang = "es" }: { lang?: "es" | "en" }) {
       <button type="submit" className="btn btn-ink mt-4 w-full">
         {t.submit} <ArrowRight className="h-4 w-4" />
       </button>
-      <p className="text-center text-xs text-ink-400">{t.privacy}</p>
+      <p className="text-center text-[0.82rem] text-ink-500">{t.privacy}</p>
     </form>
   );
 }

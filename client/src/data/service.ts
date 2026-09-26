@@ -38,25 +38,6 @@ export interface Benefit {
   ours: string;
 }
 
-/** Three outcomes right after the hero. */
-export const OUTCOMES: Feature[] = [
-  {
-    icon: LineChart,
-    title: "Más ingresos",
-    text: "Precios dinámicos que siguen a la isla, anuncios en tres plataformas y en varios idiomas.",
-  },
-  {
-    icon: Sparkles,
-    title: "Cero trabajo",
-    text: "Huéspedes, llaves, limpieza e incidencias. Nos ocupamos de todo; tú solo decides.",
-  },
-  {
-    icon: ShieldCheck,
-    title: "Tranquilidad",
-    text: "Licencia, registro de viajeros y un informe cada mes. Siempre sabes qué pasa en tu casa.",
-  },
-];
-
 /** Ventajas de delegar la gestión, frente a gestionarla por tu cuenta. */
 export const BENEFITS: Benefit[] = [
   {

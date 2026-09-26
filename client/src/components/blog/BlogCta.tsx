@@ -16,7 +16,7 @@ export default function BlogCta({ zone: zoneSlug, compact = false }: { zone?: Zo
     return (
       <aside className="border border-ink/12 bg-sand-100 p-7">
         <p className="eyebrow">Dialez Holidays</p>
-        <p className="mt-5 font-display text-2xl font-light leading-snug text-ink">{title}</p>
+        <p className="mt-5 font-display text-2xl font-normal leading-snug text-ink">{title}</p>
         <p className="mt-3 text-[0.9rem] leading-relaxed text-ink-500">{text}</p>
         <a
           href={whatsapp}

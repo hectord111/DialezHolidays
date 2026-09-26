@@ -21,7 +21,7 @@ export default function ZoneCards({ only, headingLevel = "h3", lang = "es" }: { 
             <p className="label mt-6 text-sand-600">
               {zone.area} · {zone.municipality.split(" y ")[0]}
             </p>
-            <Heading className="mt-3 font-display text-[1.75rem] font-light leading-tight tracking-[-0.01em] text-ink">{zone.name}</Heading>
+            <Heading className="mt-3 font-display text-[1.75rem] font-normal leading-tight tracking-[-0.01em] text-ink">{zone.name}</Heading>
             {lang === "es" && <p className="mt-2 text-[0.95rem] leading-relaxed text-ink-500">{zone.tagline}</p>}
             <span className="text-link mt-5">{lang === "es" ? "Ver la zona" : "View area (ES)"}</span>
           </a>

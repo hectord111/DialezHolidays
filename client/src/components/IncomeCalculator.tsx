@@ -40,7 +40,7 @@ function Slider(props: { id: string; label: string; value: number; display: stri
         <label htmlFor={props.id} className="label text-ink-500">
           {props.label}
         </label>
-        <output htmlFor={props.id} className="font-display text-3xl font-light text-ink">
+        <output htmlFor={props.id} className="font-display text-3xl font-normal text-ink">
           {props.display}
         </output>
       </div>
@@ -86,25 +86,25 @@ export default function IncomeCalculator({ lang = "es" }: { lang?: "es" | "en" }
       <dl className="mt-10 grid border-t border-ink/12 sm:grid-cols-3">
         <div className="border-b border-ink/12 py-5 sm:border-b-0 sm:pr-5">
           <dt className="label text-ink-400">{t.bookings}</dt>
-          <dd className="mt-2 font-display text-[1.8rem] font-light text-ink">{money(gross)}</dd>
-          <dd className="mt-1 text-xs text-ink-400">
+          <dd className="mt-2 font-display text-[1.8rem] font-normal text-ink">{money(gross)}</dd>
+          <dd className="mt-1 text-[0.82rem] text-ink-500">
             {nights} {t.nights}
           </dd>
         </div>
         <div className="border-b border-ink/12 py-5 sm:border-b-0 sm:border-l sm:px-5">
           <dt className="label text-ink-400">{t.fee}</dt>
-          <dd className="mt-2 font-display text-[1.8rem] font-light text-ink-500">− {money(fee)}</dd>
+          <dd className="mt-2 font-display text-[1.8rem] font-normal text-ink-500">− {money(fee)}</dd>
         </div>
         <div className="py-5 sm:border-l sm:pl-5">
           <dt className="label text-sand-600">{t.net}</dt>
-          <dd className="mt-2 font-display text-[2.4rem] font-light leading-none text-ink">{money(net)}</dd>
-          <dd className="mt-2 text-xs text-ink-400">
+          <dd className="mt-2 font-display text-[2.4rem] font-normal leading-none text-ink">{money(net)}</dd>
+          <dd className="mt-2 text-[0.82rem] text-ink-500">
             {money(net * 12)} {t.yearly}
           </dd>
         </div>
       </dl>
 
-      <p className="mt-4 border-t border-ink/12 pt-5 text-[0.78rem] leading-relaxed text-ink-400">{t.note}</p>
+      <p className="mt-4 border-t border-ink/12 pt-5 text-[0.85rem] leading-relaxed text-ink-500">{t.note}</p>
 
       <a
         href={whatsappUrl(t.whatsapp(rate, occupancy))}

@@ -71,7 +71,7 @@ export default function Zona() {
                   <block.icon className="h-[1.15rem] w-[1.15rem]" strokeWidth={1.4} />
                 </span>
                 <div>
-                  <h3 className="font-display text-[1.6rem] font-light leading-tight text-ink">{block.title}</h3>
+                  <h3 className="font-display text-[1.6rem] font-normal leading-tight text-ink">{block.title}</h3>
                   <p className="mt-3 leading-[1.75] text-ink-500">{block.text}</p>
                 </div>
               </div>
@@ -87,7 +87,7 @@ export default function Zona() {
             {zone.keys.map((key, i) => (
               <li key={key.title} className="reveal bg-mist p-7 sm:p-10">
                 <p className="label text-sand-600">{String(i + 1).padStart(2, "0")}</p>
-                <h3 className="mt-4 font-display text-[1.8rem] font-light leading-tight text-ink">{key.title}</h3>
+                <h3 className="mt-4 font-display text-[1.8rem] font-normal leading-tight text-ink">{key.title}</h3>
                 <p className="mt-4 leading-[1.75] text-ink-500">{key.text}</p>
               </li>
             ))}

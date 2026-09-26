@@ -114,7 +114,7 @@ function Article({ post }: { post: PostFull }) {
                   {post.faq.map(item => (
                     <details key={item.q} className="group border-b border-ink/15">
                       <summary className="flex items-start justify-between gap-5 py-5">
-                        <h3 className="font-display text-[1.2rem] font-light leading-snug text-ink">{item.q}</h3>
+                        <h3 className="font-display text-[1.2rem] font-normal leading-snug text-ink">{item.q}</h3>
                         <Plus className="mt-1 h-4 w-4 flex-shrink-0 text-sand-600 transition-transform group-open:rotate-45" strokeWidth={1.4} />
                       </summary>
                       <p className="pb-6 leading-[1.8] text-ink-500">{item.a}</p>

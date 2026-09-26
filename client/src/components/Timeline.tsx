@@ -13,7 +13,7 @@ export default function Timeline({ steps }: { steps: { step: string; icon: Lucid
             {i < steps.length - 1 && <span aria-hidden className="ml-0 hidden h-px flex-1 bg-sand-400/60 lg:-mr-10 lg:block" />}
           </div>
           <p className="label mt-6 text-sand-600">{step.step}</p>
-          <h3 className="mt-3 font-display text-[1.6rem] font-light leading-tight text-ink">{step.title}</h3>
+          <h3 className="mt-3 font-display text-[1.6rem] font-normal leading-tight text-ink">{step.title}</h3>
           <p className="mt-3 text-[0.95rem] leading-[1.75] text-ink-500">{step.text}</p>
         </li>
       ))}
