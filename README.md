@@ -4,9 +4,10 @@ Web de **gestión de alquiler vacacional en Tenerife** (marca de Dialez
 Properties): portada, tarifas, página de Canarias, una página por zona de la
 isla, versión en inglés y blog con publicación semanal automática.
 
-Dominio previsto: `https://dialezholidays.com` (definido en
-`client/src/seo/site.ts`, `scripts/seo-audit.ts` y `vercel.json`; si se usa
-otro dominio, basta con cambiarlo en esos tres sitios).
+Dominio: `https://holidays.dialezproperties.es`, subdominio de la web de
+Dialez Properties (definido en `client/src/seo/site.ts`,
+`scripts/seo-audit.ts` y `scripts/blog-markdown.ts`; si cambia, basta con
+cambiarlo en esos tres sitios).
 
 ## Tecnología
 
@@ -42,7 +43,9 @@ pnpm preview      # sirve dist/public como Vercel (http://localhost:4173)
 
 1. Importar el repositorio en Vercel (framework Vite; `vercel.json` ya define
    el build `pnpm run build` y la salida `dist/public`).
-2. Añadir el dominio `dialezholidays.com` (y `www`, que redirige al dominio sin www).
+2. Añadir el dominio `holidays.dialezproperties.es` al proyecto de Vercel y,
+   en Cloudflare (DNS de dialezproperties.es), crear un registro CNAME
+   `holidays` → `cname.vercel-dns.com` (sin proxy, nube gris).
 3. Opcional: crear un Deploy Hook y guardarlo como secreto
    `VERCEL_DEPLOY_HOOK_URL` en GitHub para publicar a diario los artículos
    programados (`.github/workflows/publicar-blog.yml`).

@@ -52,7 +52,7 @@ export default function PoliticaPrivacidad() {
         <Section title="1. Responsable del tratamiento">
           <p>
             En cumplimiento del Reglamento (UE) 2016/679 (RGPD) y de la Ley Orgánica 3/2018, de Protección de Datos Personales y garantía de los derechos
-            digitales (LOPDGDD), te informamos de que los datos personales que nos facilites a través de este sitio web (dialezholidays.com), de WhatsApp,
+            digitales (LOPDGDD), te informamos de que los datos personales que nos facilites a través de este sitio web (holidays.dialezproperties.es), de WhatsApp,
             del teléfono o del correo electrónico serán tratados por:
           </p>
           <div className="card space-y-1 p-6">

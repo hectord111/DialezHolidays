@@ -17,7 +17,7 @@ import { parse as parseYaml } from "yaml";
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const OUT = path.join(ROOT, "dist", "public");
 const BLOG_DIR = path.join(ROOT, "client", "src", "content", "blog");
-const SITE = "https://dialezholidays.com";
+const SITE = "https://holidays.dialezproperties.es";
 const CLIENT_ONLY = new Set(["404.html"]);
 
 const errors: string[] = [];

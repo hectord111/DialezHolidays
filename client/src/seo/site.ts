@@ -1,14 +1,14 @@
 /**
  * Datos globales del sitio usados por el SEO (canónicas, Open Graph, JSON-LD).
  *
- * SITE_URL es el dominio de producción. Todas las URLs canónicas, el sitemap
- * y los datos estructurados se construyen a partir de él: si el dominio
- * definitivo es otro (p. ej. dialezholidays.es), basta con cambiarlo aquí,
- * en scripts/seo-audit.ts y en vercel.json.
+ * SITE_URL es el dominio de producción: el subdominio de Dialez Properties.
+ * Todas las URLs canónicas, el sitemap y los datos estructurados se
+ * construyen a partir de él; si algún día cambia, basta con cambiarlo aquí,
+ * en scripts/seo-audit.ts y en scripts/blog-markdown.ts.
  */
 import { EMAIL, PHONE_E164 } from "@/lib/contact";
 
-export const SITE_URL = "https://dialezholidays.com";
+export const SITE_URL = "https://holidays.dialezproperties.es";
 export const SITE_NAME = "Dialez Holidays";
 export const DEFAULT_OG_IMAGE = "/images/og-dialez-holidays.jpg";
 export const LOGO_URL = `${SITE_URL}/images/logo.png`;
@@ -23,7 +23,7 @@ export const ORGANIZATION_ID = `${SITE_URL}/#organization`;
 export const WEBSITE_ID = `${SITE_URL}/#website`;
 export const SERVICE_ID = `${SITE_URL}/#servicio`;
 
-/** Absolute URL for a site path ("/tarifas" -> "https://dialezholidays.com/tarifas"). */
+/** Absolute URL for a site path ("/tarifas" -> "https://holidays.dialezproperties.es/tarifas"). */
 export function absoluteUrl(path: string): string {
   if (/^https?:\/\//.test(path)) return path;
   if (path === "/" || path === "") return `${SITE_URL}/`;

@@ -151,7 +151,7 @@ export function compilePost(file: string, source: string, published: Set<string>
           return text;
         }
         const title = token.title ? ` title="${escapeHtml(token.title)}"` : "";
-        if (/^https?:\/\//.test(href) && !href.includes("dialezholidays.com")) {
+        if (/^https?:\/\//.test(href) && !href.includes("holidays.dialezproperties.es")) {
           return `<a href="${escapeHtml(href)}"${title} target="_blank" rel="noopener noreferrer">${text}</a>`;
         }
         return `<a href="${escapeHtml(href)}"${title}>${text}</a>`;

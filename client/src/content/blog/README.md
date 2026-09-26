@@ -2,7 +2,7 @@
 
 Cada artículo es un archivo Markdown (`.md`) en esta carpeta. El nombre del
 archivo es la URL: `ley-vivienda-vacacional-canarias.md` se publica en
-`https://dialezholidays.com/blog/ley-vivienda-vacacional-canarias`.
+`https://holidays.dialezproperties.es/blog/ley-vivienda-vacacional-canarias`.
 
 Al desplegar, la web genera automáticamente el HTML de cada artículo, el índice
 del blog, las páginas de categoría, el `sitemap.xml`, el feed RSS
