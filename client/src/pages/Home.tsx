@@ -4,25 +4,36 @@
  * Palabras clave: gestión alquiler vacacional Tenerife, gestora Airbnb Tenerife,
  * empresa gestión alquiler vacacional Canarias.
  */
-import { ArrowRight, ChevronDown, MessageCircle, Scale } from "lucide-react";
 import { getPostCard } from "@/blog/posts";
 import BlogHighlights from "@/components/BlogHighlights";
+import Comparison from "@/components/Comparison";
 import FaqSection from "@/components/FaqSection";
 import FinalCta from "@/components/FinalCta";
+import IconList from "@/components/IconList";
 import IncomeCalculator from "@/components/IncomeCalculator";
 import Layout from "@/components/Layout";
 import PricingBlock from "@/components/PricingBlock";
 import SectionHeading from "@/components/SectionHeading";
+import Timeline from "@/components/Timeline";
 import ZoneCards from "@/components/ZoneCards";
-import { BENEFITS, HOME_FAQS, INCLUDED, PROCESS } from "@/data/service";
+import { HERO_IMAGES } from "@/data/images";
+import { BENEFITS, HOME_FAQS, OUTCOMES, PROCESS, STANDARD } from "@/data/service";
 import { MANAGEMENT_FEE_PERCENT, whatsappUrl } from "@/lib/contact";
 import { trackEvent } from "@/lib/tracking";
-import { HERO_IMAGES } from "@/data/images";
+
+const delay = (ms: number) => ({ "--rise-delay": `${ms}ms` }) as React.CSSProperties;
+
+const HERO_FACTS = [
+  { value: `${MANAGEMENT_FEE_PERCENT}%`, label: "Desde, por reserva confirmada" },
+  { value: "0 €", label: "De cuotas fijas mensuales" },
+  { value: "3", label: "Plataformas: Airbnb, Booking y Vrbo" },
+  { value: "Local", label: "Equipo en la isla" },
+];
 
 /** Link to a blog post only once it is published (plain text before). */
 function PostLink({ slug, children }: { slug: string; children: string }) {
   return getPostCard(slug) ? (
-    <a href={`/blog/${slug}`} className="font-medium text-gold underline-offset-4 hover:underline">
+    <a href={`/blog/${slug}`} className="text-ink underline decoration-sand-400 underline-offset-4 hover:decoration-ink">
       {children}
     </a>
   ) : (
@@ -30,18 +41,22 @@ function PostLink({ slug, children }: { slug: string; children: string }) {
   );
 }
 
-const HERO_STATS = [
-  { value: `${MANAGEMENT_FEE_PERCENT}%`, label: "desde, por reserva confirmada" },
-  { value: "0 €", label: "de cuotas fijas mensuales" },
-  { value: "3", label: "plataformas: Airbnb, Booking y Vrbo" },
-  { value: "Local", label: "equipo en la isla para cada incidencia" },
-];
+/** Link to the seasons guide from the "two seasons" block, once it is published. */
+function SeasonsLink() {
+  const post = getPostCard("temporada-alta-tenerife-precios-alquiler-vacacional");
+  if (!post) return null;
+  return (
+    <a href={`/blog/${post.slug}`} className="text-link mt-8">
+      Temporadas y precios, mes a mes
+    </a>
+  );
+}
 
 export default function Home() {
   return (
     <Layout overlay>
-      {/* ── HERO ─────────────────────────────────────────────────────────── */}
-      <section className="relative flex min-h-[100svh] items-end overflow-hidden bg-ocean-deep text-white">
+      {/* ── HERO: full-bleed Tenerife beach, light wash for the copy ─────── */}
+      <section className="relative isolate flex min-h-[100svh] flex-col overflow-hidden bg-ivory">
         <picture>
           <source media="(max-width: 767px)" srcSet={HERO_IMAGES.mobile} type="image/webp" />
           <img
@@ -51,262 +66,267 @@ export default function Home() {
             decoding="async"
             width={2400}
             height={1358}
-            className="animate-slow-zoom absolute inset-0 h-full w-full object-cover object-center"
+            className="drift absolute inset-0 -z-10 h-full w-full object-cover object-[70%_50%]"
           />
         </picture>
-        <div className="absolute inset-0 bg-gradient-to-r from-ocean-deep/85 via-ocean-deep/45 to-transparent" />
-        <div className="absolute inset-0 bg-gradient-to-t from-ocean-deep/90 via-transparent to-ocean-deep/40" />
-        <div className="absolute inset-0 bg-ocean-deep/25 md:hidden" />
+        {/* Legibility: an ivory wash behind the copy and the figures; the photograph stays vivid on the right */}
+        <div aria-hidden className="absolute inset-0 -z-10 bg-gradient-to-b from-ivory/95 via-ivory/75 to-ivory/10 md:bg-gradient-to-r md:from-ivory md:via-ivory/70 md:to-ivory/0" />
+        <div aria-hidden className="absolute inset-0 -z-10 hidden bg-gradient-to-b from-ivory/60 via-transparent to-ivory/40 md:block" />
 
-        <div className="container relative pb-12 pt-32 md:pb-14">
+        <div className="container flex flex-1 flex-col justify-center pb-12 pt-[calc(var(--header-height)+2.5rem)] sm:pb-16 sm:pt-[calc(var(--header-height)+4rem)]">
           <div className="max-w-3xl">
             <h1>
-              <span className="eyebrow eyebrow-light animate-fade-up">Gestión de alquiler vacacional en Tenerife</span>
-              <span className="animate-fade-up delay-1 mt-6 block font-display text-[2.9rem] font-medium leading-[1.02] sm:text-6xl lg:text-[4.6rem] xl:text-[5rem]">
-                Rentabiliza tu vivienda en Tenerife.{" "}
-                <em className="font-normal text-gold">Nosotros nos ocupamos de todo.</em>
+              <span className="eyebrow rise" style={delay(150)}>
+                Gestión de alquiler vacacional · Tenerife
+              </span>
+              <span className="display rise mt-7 block text-[2.55rem] leading-[1.02] sm:mt-9 sm:text-6xl lg:text-[5.4rem]" style={delay(300)}>
+                <span className="block">Tu vivienda en Tenerife,</span>
+                <span className="block italic text-sea">en las mejores manos.</span>
               </span>
             </h1>
-            <p className="animate-fade-up delay-2 mt-7 max-w-2xl text-lg leading-relaxed text-white/85 md:text-xl">
-              Somos tu gestora de Airbnb y alquiler vacacional en la isla: anuncios en Airbnb, Booking y Vrbo, huéspedes, limpieza, mantenimiento, licencia y
-              precios dinámicos. Tú solo recibes los ingresos.
+            <p className="rise mt-7 max-w-xl text-[1.02rem] leading-[1.75] text-ink-700 sm:mt-9 sm:text-[1.1rem]" style={delay(500)}>
+              Somos tu gestora de Airbnb y alquiler vacacional en la isla. Anuncios, huéspedes, limpieza, mantenimiento, licencia y precios: nos ocupamos
+              de todo. Tú solo recibes los ingresos.
             </p>
-            <div className="animate-fade-up delay-3 mt-9 flex flex-wrap gap-4">
-              <a href="#calculadora" className="btn btn-gold">
-                Calcula tus ingresos <ArrowRight className="h-4 w-4" />
+            <div className="rise mt-9 flex flex-col gap-3 sm:mt-11 sm:flex-row sm:items-center" style={delay(650)}>
+              <a href="#calculadora" className="btn btn-ink">
+                Calcula tus ingresos
               </a>
               <a
                 href={whatsappUrl()}
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => trackEvent("Lead", { content_name: "WhatsApp Hero" })}
-                className="btn btn-ghost-light"
+                className="btn btn-outline bg-ivory/40 backdrop-blur-sm"
               >
-                <MessageCircle className="h-5 w-5" /> Hablar por WhatsApp
+                Habla con nosotros por WhatsApp
               </a>
             </div>
           </div>
+        </div>
 
-          <dl className="animate-fade-up delay-4 mt-12 grid grid-cols-2 gap-3 md:mt-14 md:grid-cols-4">
-            {HERO_STATS.map(stat => (
-              <div key={stat.label} className="glass rounded-2xl px-5 py-4">
-                <dt className="sr-only">{stat.label}</dt>
-                <dd>
-                  <span className="block font-display text-3xl font-medium md:text-4xl">{stat.value}</span>
-                  <span className="mt-1 block text-xs leading-snug text-white/70">{stat.label}</span>
-                </dd>
+        <div className="rise border-t border-ink/10 bg-ivory/75 backdrop-blur-md" style={delay(850)}>
+          <dl className="container grid grid-cols-2 lg:grid-cols-4">
+            {HERO_FACTS.map((fact, i) => (
+              <div
+                key={fact.label}
+                className={`flex flex-col gap-1.5 py-5 sm:gap-2 sm:py-6 lg:py-8 ${i % 2 === 0 ? "pr-5" : "border-l border-ink/10 pl-5 sm:pl-8"} ${
+                  i >= 2 ? "border-t border-ink/10 lg:border-t-0" : ""
+                } ${i === 2 ? "lg:border-l lg:pl-8" : ""}`}
+              >
+                <dt className="label order-2 leading-snug text-ink-500">{fact.label}</dt>
+                <dd className="order-1 font-display text-[1.75rem] font-light text-ink sm:text-3xl lg:text-4xl">{fact.value}</dd>
               </div>
             ))}
           </dl>
         </div>
-
-        <a href="#ventajas" aria-label="Ver las ventajas" className="absolute bottom-4 left-1/2 hidden -translate-x-1/2 text-white/60 hover:text-white md:block">
-          <ChevronDown className="h-6 w-6 animate-bounce" />
-        </a>
       </section>
 
-      {/* ── VENTAJAS ─────────────────────────────────────────────────────── */}
-      <section id="ventajas" className="section scroll-mt-16">
-        <div className="container grid gap-16 lg:grid-cols-[0.9fr_1.1fr] lg:gap-24">
-          <div className="lg:sticky lg:top-28 lg:self-start">
-            <SectionHeading
-              eyebrow="Por qué con nosotros"
-              title="Las ventajas de que gestionemos tu vivienda vacacional"
-              intro="Una vivienda vacacional bien gestionada no es la que tiene más reservas, sino la que consigue más ingresos con menos preocupaciones para su dueño. Para eso existimos."
-            />
-            <div className="reveal relative mt-12 hidden lg:block">
-              <img
-                src="/images/apartamento-bienvenida.webp"
-                alt="Dormitorio de una vivienda vacacional en Tenerife preparado para huéspedes, con toallas, cesta de bienvenida y vistas al mar"
-                loading="lazy"
-                decoding="async"
-                width={1168}
-                height={880}
-                className="aspect-[4/3] w-full rounded-[2rem] object-cover"
-              />
-              <div className="absolute -bottom-8 -right-6 max-w-[15rem] rounded-2xl bg-ocean p-5 text-white shadow-2xl">
-                <p className="font-display text-2xl leading-tight">Cada llegada, como la primera.</p>
-                <p className="mt-2 text-xs text-white/65">Limpieza profesional, ropa de cama y detalles de bienvenida en cada estancia.</p>
-              </div>
-            </div>
-          </div>
-
-          <ol className="grid gap-x-10 gap-y-14 sm:grid-cols-2">
-            {BENEFITS.map((benefit, i) => (
-              <li key={benefit.title} className="reveal">
-                <div className="flex items-center gap-4">
-                  <span className="font-display text-lg text-gold-ink">{String(i + 1).padStart(2, "0")}</span>
-                  <span className="h-px flex-1 bg-border" />
-                  <benefit.icon className="h-6 w-6 text-ocean" strokeWidth={1.4} />
-                </div>
-                <h3 className="mt-6 text-[1.9rem] font-medium leading-tight text-ocean">{benefit.title}</h3>
-                <p className="mt-3 leading-relaxed text-muted-foreground">{benefit.text}</p>
+      {/* ── LO QUE CAMBIA PARA TI ────────────────────────────────────────── */}
+      <section className="section bg-ivory">
+        <div className="container">
+          <SectionHeading
+            eyebrow="Para el propietario"
+            title="Lo que cambia para ti."
+            intro="Somos una gestora de alquiler vacacional y Airbnb con equipo en Tenerife. Nos encargamos de tu vivienda de principio a fin, con estándar de hotel boutique."
+          />
+          <ol className="mt-12 grid border-t border-ink/15 sm:mt-16 lg:grid-cols-3">
+            {OUTCOMES.map((point, i) => (
+              <li
+                key={point.title}
+                className={`reveal border-b border-ink/15 py-9 sm:py-11 lg:border-b-0 lg:pr-12 ${i > 0 ? "lg:border-l lg:pl-10" : ""}`}
+                style={{ "--reveal-delay": `${i * 100}ms` } as React.CSSProperties}
+              >
+                <span className="icon-frame" aria-hidden>
+                  <point.icon className="h-[1.15rem] w-[1.15rem]" strokeWidth={1.4} />
+                </span>
+                <h3 className="mt-7 font-display text-[2.1rem] font-light leading-none tracking-[-0.01em] text-ink sm:text-[2.6rem]">{point.title}</h3>
+                <p className="mt-4 max-w-xs text-[0.98rem] leading-[1.75] text-ink-500">{point.text}</p>
               </li>
             ))}
           </ol>
-        </div>
-      </section>
 
-      {/* ── TENERIFE TODO EL AÑO ────────────────────────────────────────── */}
-      <section className="relative overflow-hidden bg-ocean-deep text-white">
-        <img
-          src="/images/terraza-atardecer-tenerife.jpg"
-          alt="Terraza de una villa en Tenerife con sofás frente al océano al atardecer"
-          loading="lazy"
-          decoding="async"
-          className="absolute inset-0 h-full w-full object-cover opacity-55"
-        />
-        <div className="absolute inset-0 bg-gradient-to-r from-ocean-deep via-ocean-deep/70 to-transparent" />
-        <div className="container relative py-28 md:py-40">
-          <div className="reveal max-w-2xl">
-            <span className="eyebrow eyebrow-light">Tenerife, 365 días</span>
-            <p className="mt-6 font-display text-4xl font-medium leading-[1.1] md:text-[3.4rem]">
-              En Tenerife no hay una temporada alta: hay dos. Una buena gestión aprovecha las dos.
+          <div className="reveal mt-16 grid gap-6 sm:mt-20 lg:mt-24 lg:grid-cols-12 lg:gap-16">
+            <p className="order-2 max-w-xs self-end font-display text-lg font-light italic leading-snug text-ink-500 lg:order-1 lg:col-span-3">
+              Cada llegada, como la primera: preparada y presentada con estándar hotelero.
             </p>
-            <p className="mt-6 text-lg leading-relaxed text-white/75">
-              El invierno, cuando el norte de Europa busca sol, y el verano, con las familias y el turismo nacional. Entre medias, puentes, eventos y el
-              Carnaval. Ajustamos precio y estancia mínima a cada momento para que tu calendario no se quede a medias.
-            </p>
+            <div className="relative order-1 aspect-[3/2] overflow-hidden bg-sand-200 lg:order-2 lg:col-span-9">
+              <img
+                src="/images/terraza-vistas-mar-tenerife.webp"
+                alt="Terraza de una vivienda vacacional en Tenerife con sofás y desayuno frente a la costa al atardecer"
+                loading="lazy"
+                decoding="async"
+                className="absolute inset-0 h-full w-full object-cover"
+              />
+            </div>
           </div>
         </div>
       </section>
 
-      {/* ── QUÉ INCLUYE ──────────────────────────────────────────────────── */}
-      <section id="servicio" className="section scroll-mt-16 bg-sand">
+      {/* ── VENTAJAS: tú o nosotros ──────────────────────────────────────── */}
+      <section id="ventajas" className="section bg-mist">
         <div className="container">
-          <SectionHeading
-            center
-            eyebrow="Gestión integral"
-            title="Tu gestora de Airbnb, Booking y Vrbo en Tenerife"
-            intro="Todo lo que necesita una vivienda vacacional para funcionar sola, de la primera foto al informe de cada mes."
-          />
-          <ul className="mt-16 grid gap-px overflow-hidden rounded-[2rem] border border-border bg-border sm:grid-cols-2 lg:grid-cols-4">
-            {INCLUDED.map(item => (
-              <li key={item.title} className="reveal bg-background p-7 transition-colors duration-300 hover:bg-card">
-                <item.icon className="h-7 w-7 text-gold-ink" strokeWidth={1.4} />
-                <h3 className="mt-5 font-sans text-base font-semibold text-ocean" style={{ fontFamily: "var(--font-sans)" }}>
-                  {item.title}
-                </h3>
-                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{item.text}</p>
-              </li>
-            ))}
-          </ul>
+          <SectionHeading eyebrow="Por qué con nosotros" size="xl" title="Las ventajas de que gestionemos tu vivienda." />
+          <div className="mt-12 sm:mt-16 lg:mt-20">
+            <Comparison items={BENEFITS} />
+          </div>
+          <a href="/tarifas" className="reveal text-link mt-10">
+            Tarifas y todo lo que incluye
+          </a>
         </div>
       </section>
 
-      {/* ── TARIFAS ─────────────────────────────────────────────────────── */}
-      <section id="tarifas" className="section scroll-mt-16">
-        <div className="container">
-          <SectionHeading
-            center
-            eyebrow="Lo que cobramos"
-            title="Una tarifa clara: solo cobramos si tú cobras"
-            intro="Sin cuotas mensuales, sin costes de alta ocultos y sin letra pequeña. Un porcentaje de cada reserva confirmada que incluye la gestión completa de tu vivienda."
-          />
-          <div className="mt-16">
-            <PricingBlock />
+      {/* ── EL ESTÁNDAR ─────────────────────────────────────────────────── */}
+      <section className="section overflow-hidden bg-ivory">
+        <div className="container grid gap-20 lg:grid-cols-12 lg:gap-16">
+          <div className="reveal relative self-center lg:col-span-7">
+            <div className="relative aspect-[4/3] w-[88%] overflow-hidden bg-sand-200 lg:w-[85%]">
+              <img
+                src="/images/salon-vistas-mar-tenerife.webp"
+                alt="Salón de vivienda vacacional con pared de piedra volcánica y terraza con vistas al mar y palmeras"
+                loading="lazy"
+                decoding="async"
+                className="absolute inset-0 h-full w-full object-cover"
+              />
+            </div>
+            <div className="absolute -bottom-12 right-0 aspect-[4/5] w-[42%] overflow-hidden border-[6px] border-ivory bg-sand-200 sm:border-[10px] lg:-bottom-20">
+              <img
+                src="/images/apartamento-bienvenida.webp"
+                alt="Dormitorio preparado para huéspedes con toallas, cesta de bienvenida y vistas al mar"
+                loading="lazy"
+                decoding="async"
+                className="absolute inset-0 h-full w-full object-cover"
+              />
+            </div>
           </div>
+          <div className="flex flex-col justify-center pt-8 lg:col-span-5 lg:pt-0">
+            <SectionHeading
+              eyebrow="El estándar"
+              size="md"
+              title="Presentada como un hotel boutique. Cuidada como tu propia casa."
+              intro="Preparamos y fotografiamos tu vivienda para que destaque en Airbnb y Booking, y la devolvemos a ese estado después de cada estancia."
+            />
+            <div className="reveal mt-10 border-t border-ink/10 pt-8">
+              <IconList items={STANDARD} />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── TENERIFE, DOS TEMPORADAS ────────────────────────────────────── */}
+      <section className="relative overflow-hidden bg-ivory">
+        <div className="grid lg:grid-cols-12">
+          <div className="relative min-h-[20rem] lg:col-span-7 lg:min-h-[36rem]">
+            <img
+              src="/images/terraza-atardecer-tenerife.jpg"
+              alt="Terraza de una villa en Tenerife con sofás frente al océano al atardecer"
+              loading="lazy"
+              decoding="async"
+              className="absolute inset-0 h-full w-full object-cover"
+            />
+          </div>
+          <div className="flex items-center bg-sand-100 px-5 py-20 sm:px-12 lg:col-span-5 lg:px-16">
+            <div className="reveal max-w-md">
+              <p className="eyebrow">Tenerife, 365 días</p>
+              <p className="display mt-8 text-[2rem] italic sm:text-[2.6rem]">En Tenerife no hay una temporada alta: hay dos.</p>
+              <p className="mt-6 text-[1rem] leading-[1.8] text-ink-500">
+                El invierno, cuando el norte de Europa busca sol, y el verano, con las familias y el turismo nacional. Entre medias, puentes, eventos y el
+                Carnaval. Ajustamos precio y estancia mínima a cada momento para que tu calendario no se quede a medias.
+              </p>
+              <SeasonsLink />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── TARIFA ──────────────────────────────────────────────────────── */}
+      <section id="tarifas" className="section bg-ivory-50">
+        <div className="container">
+          <PricingBlock />
         </div>
       </section>
 
       {/* ── CALCULADORA ─────────────────────────────────────────────────── */}
-      <section id="calculadora" className="relative scroll-mt-16 overflow-hidden bg-ocean text-white">
-        <div
-          aria-hidden
-          className="pointer-events-none absolute -left-40 top-0 h-[36rem] w-[36rem] rounded-full"
-          style={{ background: "radial-gradient(circle, oklch(0.72 0.09 195 / 0.25), transparent 65%)" }}
-        />
-        <div className="container relative grid items-center gap-14 py-24 md:py-32 lg:grid-cols-[0.85fr_1.15fr] lg:gap-20">
-          <SectionHeading
-            light
-            eyebrow="Calculadora"
-            title="¿Cuánto puede generar tu vivienda en Tenerife?"
-            intro={
-              <>
-                Mueve el precio por noche y la ocupación para ver cuánto te quedaría después de nuestra comisión. Para una cifra ajustada a tu vivienda,
-                pídenos la estimación gratuita: la preparamos con datos de viviendas comparables de tu zona.
-              </>
-            }
-          />
-          <div className="reveal">
+      <section id="calculadora" className="section border-y border-ink/10 bg-sand-100">
+        <div className="container grid items-center gap-14 lg:grid-cols-12 lg:gap-20">
+          <div className="lg:col-span-5">
+            <SectionHeading
+              eyebrow="Calculadora"
+              title="¿Cuánto puede generar tu vivienda en Tenerife?"
+              intro="Mueve el precio por noche y la ocupación para ver cuánto te quedaría después de nuestra comisión. Para una cifra ajustada a tu vivienda, pídenos la estimación gratuita: la preparamos con datos de viviendas comparables de tu zona."
+            />
+          </div>
+          <div className="reveal lg:col-span-7">
             <IncomeCalculator />
           </div>
         </div>
       </section>
 
-      {/* ── CÓMO FUNCIONA ───────────────────────────────────────────────── */}
-      <section id="como-funciona" className="section scroll-mt-16">
+      {/* ── PROCESO ─────────────────────────────────────────────────────── */}
+      <section id="como-funciona" className="section bg-ivory">
         <div className="container">
-          <SectionHeading eyebrow="Cómo funciona" title="De tu llave a tu primera reserva, en cuatro pasos" />
-          <ol className="relative mt-16 grid gap-12 md:grid-cols-2 lg:grid-cols-4 lg:gap-8">
-            <span aria-hidden className="absolute left-0 right-0 top-[1.9rem] hidden h-px bg-gradient-to-r from-gold via-gold/40 to-transparent lg:block" />
-            {PROCESS.map(step => (
-              <li key={step.step} className="reveal relative">
-                <span className="relative flex h-[3.8rem] w-[3.8rem] items-center justify-center rounded-full border border-gold bg-background font-display text-2xl text-gold-ink">
-                  {step.step}
-                </span>
-                <h3 className="mt-7 text-3xl font-medium text-ocean">{step.title}</h3>
-                <p className="mt-3 leading-relaxed text-muted-foreground">{step.text}</p>
-              </li>
-            ))}
-          </ol>
+          <SectionHeading eyebrow="El proceso" size="xl" title="De tu llave a tu primera reserva." />
+          <div className="mt-14 lg:mt-24">
+            <Timeline steps={PROCESS} />
+          </div>
         </div>
       </section>
 
       {/* ── ZONAS ───────────────────────────────────────────────────────── */}
-      <section id="zonas" className="section scroll-mt-16 bg-sand">
+      <section id="zonas" className="section bg-mist">
         <div className="container">
           <div className="flex flex-wrap items-end justify-between gap-8">
             <SectionHeading
               eyebrow="Toda la isla"
-              title="Gestión de alquiler vacacional en toda Tenerife"
+              title="Gestión de alquiler vacacional en toda Tenerife."
               intro="Del lujo de Costa Adeje al encanto de Puerto de la Cruz: cada zona tiene su huésped, su temporada y sus reglas. Las conocemos."
             />
-            <a href="/canarias" className="reveal inline-flex items-center gap-2 text-sm font-semibold text-gold-ink hover:underline">
-              ¿Otra isla? Gestión en Canarias <ArrowRight className="h-4 w-4" />
+            <a href="/canarias" className="reveal text-link">
+              ¿Otra isla? Gestión en Canarias
             </a>
           </div>
-          <div className="mt-14">
+          <div className="mt-14 sm:mt-20">
             <ZoneCards />
           </div>
         </div>
       </section>
 
       {/* ── NORMATIVA ───────────────────────────────────────────────────── */}
-      <section className="section">
+      <section className="bg-ivory pt-20 sm:pt-28">
         <div className="container">
-          <div className="reveal grid items-center gap-10 rounded-[2rem] border border-border bg-card p-8 sm:p-12 lg:grid-cols-[auto_1fr_auto] lg:gap-14">
-            <span className="flex h-20 w-20 items-center justify-center rounded-full bg-sand">
-              <Scale className="h-9 w-9 text-gold-ink" strokeWidth={1.3} />
-            </span>
-            <div>
-              <h2 className="text-3xl font-medium leading-tight text-ocean md:text-4xl">La normativa canaria, de nuestra cuenta</h2>
-              <p className="mt-4 max-w-3xl leading-relaxed text-muted-foreground">
-                La <PostLink slug="ley-vivienda-vacacional-canarias">Ley 6/2025 de vivienda vacacional de Canarias</PostLink> ha cambiado las reglas: el uso
-                turístico depende del planeamiento de cada ayuntamiento, la declaración responsable caduca y las comunidades de propietarios tienen más peso.
-                Revisamos la situación de tu vivienda, te ayudamos con la licencia VV y cumplimos cada estancia con el registro de viajeros.
-              </p>
+          <div className="reveal grid gap-8 border-y border-ink/15 py-12 lg:grid-cols-12 lg:items-center lg:gap-16">
+            <div className="lg:col-span-4">
+              <p className="eyebrow">Normativa</p>
+              <h2 className="display mt-6 text-[1.9rem] sm:text-[2.4rem]">La ley canaria, de nuestra cuenta.</h2>
             </div>
-            <a
-              href={whatsappUrl("Hola, tengo dudas sobre la licencia de vivienda vacacional de mi vivienda en Tenerife.")}
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={() => trackEvent("Lead", { content_name: "Licencia" })}
-              className="btn btn-ghost-dark"
-            >
-              Consultar mi licencia
-            </a>
+            <p className="text-[1rem] leading-[1.8] text-ink-500 lg:col-span-5">
+              La <PostLink slug="ley-vivienda-vacacional-canarias">Ley 6/2025 de vivienda vacacional de Canarias</PostLink> ha cambiado las reglas: el uso
+              turístico depende del planeamiento de cada ayuntamiento, la declaración responsable caduca y la comunidad tiene más peso. Revisamos tu caso, te
+              ayudamos con la licencia VV y cumplimos con el registro de viajeros en cada estancia.
+            </p>
+            <div className="lg:col-span-3 lg:text-right">
+              <a
+                href={whatsappUrl("Hola, tengo dudas sobre la licencia de vivienda vacacional de mi vivienda en Tenerife.")}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => trackEvent("Lead", { content_name: "Licencia" })}
+                className="btn btn-outline"
+              >
+                Consultar mi licencia
+              </a>
+            </div>
           </div>
         </div>
       </section>
 
       <FaqSection
         faqs={HOME_FAQS}
-        title="Preguntas frecuentes sobre la gestión de tu vivienda vacacional"
+        className="bg-ivory"
+        title="Preguntas sobre la gestión de tu vivienda vacacional."
         intro="Si tienes cualquier otra duda, escríbenos por WhatsApp y te respondemos personalmente."
       />
 
-      <BlogHighlights title="Guías para propietarios de viviendas vacacionales" />
+      <BlogHighlights className="border-t border-ink/10 bg-ivory-50" title="Guías para propietarios de viviendas vacacionales." />
 
       <FinalCta />
     </Layout>

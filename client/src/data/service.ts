@@ -28,38 +28,81 @@ export interface Feature {
   text: string;
 }
 
-/** Ventajas de delegar la gestión (sección "Por qué con nosotros"). */
-export const BENEFITS: Feature[] = [
+/** A benefit set against doing it yourself (the "Ventajas" section). */
+export interface Benefit {
+  icon: LucideIcon;
+  title: string;
+  /** What it usually looks like when the owner manages it alone. */
+  usual: string;
+  /** What we do. */
+  ours: string;
+}
+
+/** Three outcomes right after the hero. */
+export const OUTCOMES: Feature[] = [
   {
     icon: LineChart,
-    title: "Más ingresos por noche",
-    text: "Ajustamos el precio cada día según la temporada, los eventos de la isla, la antelación y la competencia. Ni noches vacías por un precio alto ni reservas regaladas en plena temporada.",
+    title: "Más ingresos",
+    text: "Precios dinámicos que siguen a la isla, anuncios en tres plataformas y en varios idiomas.",
+  },
+  {
+    icon: Sparkles,
+    title: "Cero trabajo",
+    text: "Huéspedes, llaves, limpieza e incidencias. Nos ocupamos de todo; tú solo decides.",
+  },
+  {
+    icon: ShieldCheck,
+    title: "Tranquilidad",
+    text: "Licencia, registro de viajeros y un informe cada mes. Siempre sabes qué pasa en tu casa.",
+  },
+];
+
+/** Ventajas de delegar la gestión, frente a gestionarla por tu cuenta. */
+export const BENEFITS: Benefit[] = [
+  {
+    icon: LineChart,
+    title: "Un precio que se mueve con la isla",
+    usual: "Un precio fijo, o revisado a mano de vez en cuando.",
+    ours: "Precios dinámicos revisados cada día según la temporada, los eventos de Tenerife, la antelación y la competencia.",
   },
   {
     icon: Globe2,
-    title: "Más visibilidad, más ocupación",
-    text: "Tu vivienda aparece en Airbnb, Booking y Vrbo a la vez, con el calendario sincronizado, fotografía profesional y anuncios cuidados en varios idiomas.",
+    title: "Más visibilidad, más reservas",
+    usual: "Un anuncio en una sola plataforma, a menudo en un solo idioma.",
+    ours: "Airbnb, Booking y Vrbo a la vez, con el calendario sincronizado, fotografía profesional y anuncios en varios idiomas.",
   },
   {
     icon: MessagesSquare,
-    title: "Cero llamadas a deshoras",
-    text: "Respondemos a cada huésped antes, durante y después de su estancia, en varios idiomas. Tú no tienes que estar pendiente del móvil.",
+    title: "Huéspedes atendidos, tú tranquilo",
+    usual: "Mensajes y llamadas a cualquier hora, también en tus vacaciones.",
+    ours: "Atendemos a cada huésped antes, durante y después de la estancia, en varios idiomas.",
   },
   {
     icon: Sparkles,
     title: "Tu casa, cuidada como un hotel",
-    text: "Limpieza profesional y lavandería entre estancias, revisión tras cada salida y mantenimiento preventivo. Tu vivienda se conserva mejor y las reseñas lo notan.",
+    usual: "Buscar quien limpie y quien arregle, y revisar que todo quede bien.",
+    ours: "Limpieza y lavandería profesionales, revisión tras cada salida e incidencias resueltas por nuestro equipo local.",
   },
   {
-    icon: ShieldCheck,
-    title: "Tranquilidad legal",
-    text: "Te ayudamos con la licencia de vivienda vacacional (VV), el registro de viajeros y la normativa canaria, que ha cambiado con la Ley 6/2025.",
+    icon: ScrollText,
+    title: "La normativa, de nuestra cuenta",
+    usual: "Estudiar por tu cuenta la Ley 6/2025, la licencia VV y el registro de viajeros.",
+    ours: "Te ayudamos con la licencia de vivienda vacacional y cumplimos en cada estancia con el registro de viajeros.",
   },
   {
     icon: BarChart3,
-    title: "Transparencia total",
-    text: "Informe mensual con reservas, ingresos y gastos. Tú decides cuándo bloquear fechas para disfrutar de tu casa y siempre sabes qué está pasando.",
+    title: "Todo a la vista",
+    usual: "Cuentas repartidas entre plataformas, extractos y hojas de cálculo.",
+    ours: "Un informe mensual con reservas, ingresos y gastos. Y bloqueas fechas para usar tu casa cuando quieras.",
   },
+];
+
+/** El estándar de presentación y de cada estancia. */
+export const STANDARD: { icon: LucideIcon; label: string }[] = [
+  { icon: Camera, label: "Preparación y fotografía con estándar hotelero" },
+  { icon: Globe2, label: "Anuncios optimizados y sincronizados en todos los canales" },
+  { icon: KeyRound, label: "Llegada cuidada: guía de la casa y de la isla" },
+  { icon: Sparkles, label: "Control de calidad después de cada limpieza" },
 ];
 
 /** Todo lo que incluye la gestión integral. */
@@ -78,24 +121,28 @@ export const INCLUDED: Feature[] = [
   { icon: ShieldCheck, title: "Sin cuotas fijas", text: "Solo cobramos un porcentaje de las reservas que se confirman." },
 ];
 
-export const PROCESS = [
+export const PROCESS: { step: string; icon: LucideIcon; title: string; text: string }[] = [
   {
     step: "01",
+    icon: ClipboardCheck,
     title: "Estimación gratuita",
     text: "Nos cuentas cómo es tu vivienda y dónde está. Analizamos su potencial y la situación de la licencia y te enviamos una estimación de ingresos, sin compromiso.",
   },
   {
     step: "02",
+    icon: Camera,
     title: "Preparación y alta",
     text: "Revisamos equipamiento y seguridad, hacemos la sesión de fotos, creamos los anuncios en Airbnb, Booking y Vrbo y configuramos los precios.",
   },
   {
     step: "03",
+    icon: KeyRound,
     title: "Gestión diaria",
     text: "Nos ocupamos de reservas, huéspedes, entradas y salidas, limpieza, lavandería y mantenimiento. Tú no tienes que hacer nada.",
   },
   {
     step: "04",
+    icon: BarChart3,
     title: "Tú cobras",
     text: "Recibes tus ingresos y un informe mensual claro. Cuando quieras usar tu casa, bloqueamos las fechas en el calendario.",
   },

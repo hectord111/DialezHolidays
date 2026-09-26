@@ -29,17 +29,17 @@ export default function BlogCategory() {
         <CategoryNav active={category.slug} />
       </BlogHeader>
 
-      <div className="container py-14 md:py-20">
+      <div className="container py-16 md:py-24">
         {posts.length > 0 ? (
-          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="grid gap-x-8 gap-y-14 sm:grid-cols-2 lg:grid-cols-3">
             {posts.map(post => (
               <PostCard key={post.slug} post={post} headingLevel="h2" />
             ))}
           </div>
         ) : (
-          <p className="text-muted-foreground">
+          <p className="text-ink-500">
             Todavía no hay artículos en esta categoría.{" "}
-            <a href="/blog" className="text-gold-ink hover:underline">
+            <a href="/blog" className="text-sea underline underline-offset-4">
               Ver todos los artículos
             </a>
             .

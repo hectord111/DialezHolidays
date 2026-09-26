@@ -73,50 +73,53 @@ const EXAMPLE = { gross: 3000 };
 export default function Tarifas() {
   const fee = (EXAMPLE.gross * MANAGEMENT_FEE_PERCENT) / 100;
   return (
-    <Layout overlay whatsappText="Hola, me gustaría conocer vuestras tarifas de gestión de alquiler vacacional para mi vivienda en Tenerife.">
+    <Layout whatsappText="Hola, me gustaría conocer vuestras tarifas de gestión de alquiler vacacional para mi vivienda en Tenerife.">
       <PageHero
         image="/images/apartamento-bienvenida.webp"
         imageAlt="Dormitorio de una vivienda vacacional en Tenerife preparado para huéspedes, con cesta de bienvenida y toallas"
         eyebrow="Tarifas claras"
         title={
           <>
-            Tarifas de gestión de alquiler vacacional en Tenerife: <em className="text-gold">desde el {MANAGEMENT_FEE_PERCENT}%</em>
+            Tarifas de gestión de alquiler vacacional en Tenerife: <em className="text-sea">desde el {MANAGEMENT_FEE_PERCENT}%</em>
           </>
         }
         intro="Un único porcentaje sobre cada reserva confirmada, con la gestión completa de tu vivienda incluida. Sin cuotas fijas, sin gastos ocultos y sin sorpresas en la liquidación."
         breadcrumbs={[{ label: "Inicio", href: "/" }, { label: "Tarifas" }]}
       />
 
-      <section className="section">
+      <section className="section bg-ivory">
         <div className="container">
           <PricingBlock showDetailsLink={false} />
         </div>
       </section>
 
       {/* ── EJEMPLO ─────────────────────────────────────────────────────── */}
-      <section className="section bg-sand">
-        <div className="container grid items-center gap-14 lg:grid-cols-2 lg:gap-24">
-          <SectionHeading
-            eyebrow="Un ejemplo sencillo"
-            title="Qué significa el 15% en tu liquidación"
-            intro={`Si en un mes tus reservas suman ${formatEs(EXAMPLE.gross)} €, nuestra gestión son ${formatEs(fee)} € y el resto es tuyo. Ese porcentaje cubre todo el trabajo de ese mes: anuncios, precios, huéspedes, entradas y salidas, coordinación de limpieza, incidencias e informe.`}
-          />
-          <div className="reveal card overflow-hidden">
+      <section className="section bg-sand-100">
+        <div className="container grid items-center gap-14 lg:grid-cols-12 lg:gap-24">
+          <div className="lg:col-span-5">
+            <SectionHeading
+              eyebrow="Un ejemplo sencillo"
+              size="md"
+              title="Qué significa el 15% en tu liquidación."
+              intro={`Si en un mes tus reservas suman ${formatEs(EXAMPLE.gross)} €, nuestra gestión son ${formatEs(fee)} € y el resto es tuyo. Ese porcentaje cubre todo el trabajo de ese mes: anuncios, precios, huéspedes, entradas y salidas, coordinación de limpieza, incidencias e informe.`}
+            />
+          </div>
+          <div className="reveal border border-ink/12 bg-ivory-50 lg:col-span-7">
             {[
               { label: "Reservas confirmadas del mes", value: `${formatEs(EXAMPLE.gross)} €` },
               { label: `Gestión Dialez Holidays (${MANAGEMENT_FEE_PERCENT}%)`, value: `− ${formatEs(fee)} €` },
               { label: "Cuotas fijas", value: "0 €" },
             ].map(row => (
-              <div key={row.label} className="flex items-center justify-between gap-6 border-b border-border px-7 py-5">
-                <span className="text-muted-foreground">{row.label}</span>
-                <span className="font-display text-2xl text-ocean">{row.value}</span>
+              <div key={row.label} className="flex items-baseline justify-between gap-6 border-b border-ink/10 px-6 py-6 sm:px-10">
+                <span className="label text-ink-500">{row.label}</span>
+                <span className="font-display text-[1.8rem] font-light text-ink">{row.value}</span>
               </div>
             ))}
-            <div className="flex items-center justify-between gap-6 bg-ocean px-7 py-6 text-white">
-              <span className="font-semibold">Para ti*</span>
-              <span className="font-display text-4xl">{formatEs(EXAMPLE.gross - fee)} €</span>
+            <div className="flex items-baseline justify-between gap-6 px-6 py-7 sm:px-10">
+              <span className="label text-sand-600">Para ti*</span>
+              <span className="font-display text-5xl font-light text-ink">{formatEs(EXAMPLE.gross - fee)} €</span>
             </div>
-            <p className="px-7 py-4 text-xs leading-relaxed text-muted-foreground">
+            <p className="border-t border-ink/10 px-6 py-5 text-[0.8rem] leading-relaxed text-ink-400 sm:px-10">
               *Ejemplo ilustrativo con cifras redondas, antes de los gastos propios de la vivienda, las comisiones de las plataformas y los impuestos.
             </p>
           </div>
@@ -124,43 +127,43 @@ export default function Tarifas() {
       </section>
 
       {/* ── COMPARATIVA ─────────────────────────────────────────────────── */}
-      <section className="section">
+      <section className="section bg-ivory">
         <div className="container">
           <SectionHeading
-            center
             eyebrow="Tú o nosotros"
-            title="Gestionar tu vivienda tú mismo o con una gestora"
+            size="xl"
+            title="Gestionarla tú mismo o con una gestora."
             intro="Gestionarla por tu cuenta ahorra la comisión, pero no es gratis: te cuesta tiempo, disponibilidad y, muchas veces, ingresos por noches mal vendidas."
           />
-          <div className="reveal mt-14 overflow-x-auto rounded-[1.5rem] border border-border bg-card">
-            <table className="w-full min-w-[640px] text-left text-[0.95rem]">
+          <div className="reveal mt-14 overflow-x-auto border-t border-ink sm:mt-20">
+            <table className="w-full min-w-[680px] text-left text-[0.95rem]">
               <thead>
-                <tr className="bg-ocean text-white">
-                  <th scope="col" className="px-6 py-4 font-semibold">
+                <tr className="border-b border-ink/25">
+                  <th scope="col" className="label py-5 pr-6 font-semibold text-ink">
                     Tarea
                   </th>
-                  <th scope="col" className="px-6 py-4 font-semibold">
+                  <th scope="col" className="label py-5 pr-6 font-semibold text-ink-400">
                     Si lo gestionas tú
                   </th>
-                  <th scope="col" className="px-6 py-4 font-semibold text-gold">
+                  <th scope="col" className="label py-5 font-semibold text-sea">
                     Con Dialez Holidays
                   </th>
                 </tr>
               </thead>
               <tbody>
                 {COMPARISON.map(row => (
-                  <tr key={row.task} className="border-t border-border">
-                    <th scope="row" className="px-6 py-4 font-semibold text-ocean">
+                  <tr key={row.task} className="border-b border-ink/10">
+                    <th scope="row" className="py-6 pr-6 align-top font-display text-[1.2rem] font-light text-ink">
                       {row.task}
                     </th>
-                    <td className="px-6 py-4 text-muted-foreground">
-                      <span className="flex gap-2">
-                        <Minus className="mt-1 h-4 w-4 flex-shrink-0 text-muted-foreground/60" /> {row.alone}
+                    <td className="py-6 pr-6 align-top text-ink-400">
+                      <span className="flex gap-3">
+                        <Minus className="mt-1 h-4 w-4 flex-shrink-0 text-ink-300" strokeWidth={1.5} /> {row.alone}
                       </span>
                     </td>
-                    <td className="px-6 py-4">
-                      <span className="flex gap-2">
-                        <Check className="mt-1 h-4 w-4 flex-shrink-0 text-gold-ink" /> {row.us}
+                    <td className="py-6 align-top text-ink">
+                      <span className="flex gap-3">
+                        <Check className="mt-1 h-4 w-4 flex-shrink-0 text-sea" strokeWidth={1.8} /> {row.us}
                       </span>
                     </td>
                   </tr>
@@ -172,42 +175,44 @@ export default function Tarifas() {
       </section>
 
       {/* ── QUÉ NO INCLUYE ──────────────────────────────────────────────── */}
-      <section className="section bg-sand">
+      <section className="section bg-mist">
         <div className="container">
           <SectionHeading
             eyebrow="Sin letra pequeña"
-            title="Lo que no incluye la comisión"
+            title="Lo que no incluye la comisión."
             intro="Preferimos decirlo claro desde el principio. Estos costes existen gestione quien gestione tu vivienda:"
           />
-          <div className="mt-14 grid gap-6 md:grid-cols-3">
-            {NOT_INCLUDED.map(item => (
-              <div key={item.title} className="reveal card p-8">
-                <h3 className="text-2xl font-medium text-ocean">{item.title}</h3>
-                <p className="mt-3 leading-relaxed text-muted-foreground">{item.text}</p>
-              </div>
+          <ol className="mt-14 grid border-t border-ink/15 lg:grid-cols-3">
+            {NOT_INCLUDED.map((item, i) => (
+              <li key={item.title} className={`reveal border-b border-ink/15 py-9 lg:border-b-0 lg:pr-10 ${i > 0 ? "lg:border-l lg:pl-10" : ""}`}>
+                <p className="label text-sand-600">{String(i + 1).padStart(2, "0")}</p>
+                <h3 className="mt-4 font-display text-[1.7rem] font-light leading-tight text-ink">{item.title}</h3>
+                <p className="mt-4 leading-[1.75] text-ink-500">{item.text}</p>
+              </li>
             ))}
-          </div>
+          </ol>
         </div>
       </section>
 
       {/* ── CALCULADORA ─────────────────────────────────────────────────── */}
-      <section className="relative overflow-hidden bg-ocean text-white">
-        <div className="container grid items-center gap-14 py-24 md:py-32 lg:grid-cols-[0.85fr_1.15fr] lg:gap-20">
-          <SectionHeading
-            light
-            eyebrow="Calculadora"
-            title="Haz tus propios números"
-            intro="Elige un precio medio por noche y una ocupación y comprueba cuánto te quedaría después de nuestra comisión."
-          />
-          <div className="reveal">
+      <section id="calculadora" className="section bg-ivory">
+        <div className="container grid items-center gap-14 lg:grid-cols-12 lg:gap-20">
+          <div className="lg:col-span-5">
+            <SectionHeading
+              eyebrow="Calculadora"
+              title="Haz tus propios números."
+              intro="Elige un precio medio por noche y una ocupación y comprueba cuánto te quedaría después de nuestra comisión."
+            />
+          </div>
+          <div className="reveal lg:col-span-7">
             <IncomeCalculator />
           </div>
         </div>
       </section>
 
-      <FaqSection faqs={TARIFAS_FAQS} title="Dudas sobre nuestras tarifas" />
+      <FaqSection faqs={TARIFAS_FAQS} className="border-t border-ink/10 bg-ivory-50" title="Dudas sobre nuestras tarifas." />
 
-      <FinalCta title="Pide tu propuesta con el porcentaje exacto para tu vivienda" />
+      <FinalCta title="Pide tu propuesta con el porcentaje exacto para tu vivienda." image="/images/salon-vistas-mar-tenerife.webp" />
     </Layout>
   );
 }

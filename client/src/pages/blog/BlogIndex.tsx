@@ -22,7 +22,7 @@ export default function BlogIndex() {
           <>
             Normativa, licencias, precios por temporada, Airbnb y Booking, gastos e impuestos: todo lo que necesitas para rentabilizar tu vivienda vacacional, escrito
             por el equipo que la gestiona cada día. Si prefieres delegarlo, conoce nuestra{" "}
-            <a href="/" className="font-medium text-gold-ink underline-offset-2 hover:underline">
+            <a href="/" className="text-ink underline decoration-sand-400 underline-offset-4 hover:decoration-ink">
               gestión de alquiler vacacional en Tenerife
             </a>
             .
@@ -32,15 +32,18 @@ export default function BlogIndex() {
         <CategoryNav />
       </BlogHeader>
 
-      <div className="container py-14 md:py-20">
+      <div className="container py-16 md:py-24">
         {featured ? (
           <>
             <h2 className="sr-only">Último artículo</h2>
             <PostCard post={featured} featured headingLevel="h2" />
             {rest.length > 0 && (
               <>
-                <h2 className="mb-10 mt-20 text-4xl font-medium text-ocean">Más artículos</h2>
-                <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+                <div className="mb-12 mt-24 border-t border-ink/12 pt-12">
+                  <p className="eyebrow">Archivo</p>
+                  <h2 className="display mt-6 text-4xl sm:text-5xl">Más artículos</h2>
+                </div>
+                <div className="grid gap-x-8 gap-y-14 sm:grid-cols-2 lg:grid-cols-3">
                   {rest.map(post => (
                     <PostCard key={post.slug} post={post} />
                   ))}
@@ -49,7 +52,7 @@ export default function BlogIndex() {
             )}
           </>
         ) : (
-          <p className="text-muted-foreground">Muy pronto publicaremos nuestros primeros artículos.</p>
+          <p className="text-ink-500">Muy pronto publicaremos nuestros primeros artículos.</p>
         )}
 
         <div className="mt-24">

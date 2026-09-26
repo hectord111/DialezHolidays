@@ -4,7 +4,7 @@
  * Palabras clave: gestión alquiler vacacional Canarias, gestora Airbnb
  * Canarias, empresa gestión vivienda vacacional Canarias.
  */
-import { ArrowRight, Landmark, Plane, Sun, Waves } from "lucide-react";
+import { Landmark, Plane, Sun, Waves } from "lucide-react";
 import { getPostCard } from "@/blog/posts";
 import BlogHighlights from "@/components/BlogHighlights";
 import FaqSection from "@/components/FaqSection";
@@ -86,7 +86,7 @@ const CANARIAS_FAQS = [
 export default function Canarias() {
   const lawPost = getPostCard("ley-vivienda-vacacional-canarias");
   return (
-    <Layout overlay>
+    <Layout>
       <PageHero
         image="/images/villa-piscina-tenerife.webp"
         imageAlt="Villa moderna con piscina infinita al anochecer en Tenerife, con la isla de La Gomera en el horizonte"
@@ -95,36 +95,41 @@ export default function Canarias() {
         intro="Somos una gestora de alquiler vacacional y Airbnb con base en Tenerife. Conocemos el mercado, a los huéspedes y la normativa canaria, y nos ocupamos de tu vivienda de principio a fin."
         breadcrumbs={[{ label: "Inicio", href: "/" }, { label: "Canarias" }]}
       >
-        <a href="/#calculadora" className="btn btn-gold">
-          Calcula tus ingresos <ArrowRight className="h-4 w-4" />
+        <a href="/#calculadora" className="btn btn-ink">
+          Calcula tus ingresos
         </a>
       </PageHero>
 
-      <section className="section">
+      <section className="section bg-ivory">
         <div className="container">
           <SectionHeading
             eyebrow="Por qué Canarias"
-            title="Un mercado vacacional que no se detiene en invierno"
+            title="Un mercado vacacional que no se detiene en invierno."
             intro="Canarias es uno de los pocos destinos de sol y playa de Europa con demanda durante todo el año. Para un propietario, eso significa más meses de ingresos, siempre que la vivienda esté bien presentada, bien gestionada y en regla."
           />
-          <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {WHY.map(item => (
-              <div key={item.title} className="reveal card p-8">
-                <item.icon className="h-8 w-8 text-gold-ink" strokeWidth={1.3} />
-                <h3 className="mt-6 text-2xl font-medium text-ocean">{item.title}</h3>
-                <p className="mt-3 text-[0.95rem] leading-relaxed text-muted-foreground">{item.text}</p>
-              </div>
+          <ol className="mt-14 grid border-t border-ink/15 sm:grid-cols-2 lg:grid-cols-4">
+            {WHY.map((item, i) => (
+              <li
+                key={item.title}
+                className={`reveal border-b border-ink/15 py-9 sm:pr-8 lg:border-b-0 ${i > 0 ? "lg:border-l lg:pl-8" : ""} ${i % 2 === 1 ? "sm:border-l sm:pl-8" : ""}`}
+              >
+                <span className="icon-frame" aria-hidden>
+                  <item.icon className="h-[1.15rem] w-[1.15rem]" strokeWidth={1.4} />
+                </span>
+                <h3 className="mt-6 font-display text-[1.6rem] font-light leading-tight text-ink">{item.title}</h3>
+                <p className="mt-3 text-[0.95rem] leading-[1.75] text-ink-500">{item.text}</p>
+              </li>
             ))}
-          </div>
+          </ol>
         </div>
       </section>
 
-      <section className="section bg-sand">
-        <div className="container grid gap-14 lg:grid-cols-[0.9fr_1.1fr] lg:gap-24">
-          <div className="lg:sticky lg:top-28 lg:self-start">
+      <section className="section bg-mist">
+        <div className="container grid gap-14 lg:grid-cols-12 lg:gap-20">
+          <div className="lg:col-span-5 lg:sticky lg:top-32 lg:self-start">
             <SectionHeading
               eyebrow="Normativa"
-              title="Las reglas de la vivienda vacacional en Canarias"
+              title="Las reglas de la vivienda vacacional en Canarias."
               intro={
                 <>
                   Un resumen de lo que debes tener en cuenta hoy. Revisamos contigo la situación concreta de tu vivienda antes de publicar ningún anuncio.
@@ -132,7 +137,7 @@ export default function Canarias() {
                     <>
                       {" "}
                       Lo explicamos a fondo en nuestra guía sobre la{" "}
-                      <a href={`/blog/${lawPost.slug}`} className="font-medium text-gold-ink underline-offset-2 hover:underline">
+                      <a href={`/blog/${lawPost.slug}`} className="text-ink underline decoration-sand-400 underline-offset-4 hover:decoration-ink">
                         ley de vivienda vacacional de Canarias
                       </a>
                       .
@@ -142,15 +147,13 @@ export default function Canarias() {
               }
             />
           </div>
-          <ol className="grid gap-5">
+          <ol className="border-t border-ink/15 lg:col-span-7">
             {RULES.map((rule, i) => (
-              <li key={rule.title} className="reveal card flex gap-6 p-7">
-                <span className="font-display text-3xl text-gold-ink">{String(i + 1).padStart(2, "0")}</span>
+              <li key={rule.title} className="reveal flex gap-6 border-b border-ink/15 py-8">
+                <span className="font-display text-2xl font-light text-sand-500">{String(i + 1).padStart(2, "0")}</span>
                 <div>
-                  <h3 className="font-sans text-lg font-semibold text-ocean" style={{ fontFamily: "var(--font-sans)" }}>
-                    {rule.title}
-                  </h3>
-                  <p className="mt-2 leading-relaxed text-muted-foreground">{rule.text}</p>
+                  <h3 className="font-display text-[1.35rem] font-light leading-snug text-ink">{rule.title}</h3>
+                  <p className="mt-3 leading-[1.75] text-ink-500">{rule.text}</p>
                 </div>
               </li>
             ))}
@@ -158,27 +161,27 @@ export default function Canarias() {
         </div>
       </section>
 
-      <section className="section">
+      <section className="section bg-ivory">
         <div className="container">
           <div className="flex flex-wrap items-end justify-between gap-8">
             <SectionHeading
               eyebrow="Tenerife"
-              title="Nuestra base: gestión de viviendas vacacionales en toda Tenerife"
+              title="Nuestra base: toda la isla de Tenerife."
               intro="Tenerife es la isla donde está nuestro equipo y donde conocemos cada zona al detalle."
             />
-            <a href="/" className="reveal inline-flex items-center gap-2 text-sm font-semibold text-gold-ink hover:underline">
-              Gestión de alquiler vacacional en Tenerife <ArrowRight className="h-4 w-4" />
+            <a href="/" className="reveal text-link">
+              Gestión de alquiler vacacional en Tenerife
             </a>
           </div>
-          <div className="mt-14">
+          <div className="mt-14 sm:mt-20">
             <ZoneCards />
           </div>
         </div>
       </section>
 
-      <FaqSection faqs={CANARIAS_FAQS} title="Preguntas sobre el alquiler vacacional en Canarias" />
+      <FaqSection faqs={CANARIAS_FAQS} className="border-t border-ink/10 bg-ivory-50" title="Preguntas sobre el alquiler vacacional en Canarias." />
 
-      <BlogHighlights />
+      <BlogHighlights className="border-t border-ink/10 bg-ivory" />
 
       <FinalCta />
     </Layout>

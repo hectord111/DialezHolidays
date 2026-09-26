@@ -4,7 +4,7 @@
  */
 import { use } from "react";
 import { useParams } from "wouter";
-import { CalendarDays, ChevronDown, Clock, ListOrdered, Plus } from "lucide-react";
+import { ChevronDown, Plus } from "lucide-react";
 import { getCategory } from "@/blog/categories";
 import { getLoadedPost, getPostCard, loadPost, relatedPosts } from "@/blog/posts";
 import type { PostFull } from "@/blog/types";
@@ -18,10 +18,11 @@ import NotFound from "../NotFound";
 function TableOfContents({ post }: { post: PostFull }) {
   const items = post.toc.filter(item => item.level === 2);
   return (
-    <ol className="space-y-2.5 text-sm">
-      {items.map(item => (
-        <li key={item.id}>
-          <a href={`#${item.id}`} className="block leading-snug text-muted-foreground transition-colors hover:text-gold-ink">
+    <ol className="space-y-3 text-[0.9rem]">
+      {items.map((item, i) => (
+        <li key={item.id} className="flex gap-3">
+          <span className="label pt-0.5 text-sand-600">{String(i + 1).padStart(2, "0")}</span>
+          <a href={`#${item.id}`} className="leading-snug text-ink-500 transition-colors hover:text-ink">
             {item.text}
           </a>
         </li>
@@ -39,8 +40,8 @@ function Article({ post }: { post: PostFull }) {
   return (
     <Layout>
       <article>
-        <header className="bg-sand">
-          <div className="container pb-14 pt-10 md:pb-20 md:pt-14">
+        <header className="bg-ivory">
+          <div className="container pt-10 sm:pt-14">
             <Breadcrumbs
               items={[
                 { label: "Inicio", href: "/" },
@@ -49,52 +50,53 @@ function Article({ post }: { post: PostFull }) {
                 { label: post.title },
               ]}
             />
-            <div className="mt-10 max-w-4xl">
+            <div className="mt-12 max-w-4xl sm:mt-16">
               {category && (
-                <a href={`/blog/categoria/${category.slug}`} className="eyebrow hover:opacity-80">
+                <a href={`/blog/categoria/${category.slug}`} className="eyebrow hover:text-ink">
                   {category.name}
                 </a>
               )}
-              <h1 className="mt-5 text-4xl font-medium leading-[1.08] text-ocean md:text-5xl lg:text-6xl">{post.title}</h1>
-              <p className="mt-6 text-lg leading-relaxed text-muted-foreground md:text-xl">{post.description}</p>
-              <div className="mt-7 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-muted-foreground">
+              <h1 className="display mt-7 text-[2.3rem] sm:mt-9 sm:text-5xl lg:text-[4rem]">{post.title}</h1>
+              <p className="mt-7 max-w-3xl text-[1.05rem] leading-[1.8] text-ink-500 sm:text-[1.15rem]">{post.description}</p>
+              <div className="label mt-9 flex flex-wrap items-center gap-x-6 gap-y-3 border-t border-ink/12 pt-6 text-ink-400">
                 <span>
-                  Por <strong className="font-semibold text-foreground">el equipo de Dialez Holidays</strong>
+                  Por <span className="text-ink">el equipo de Dialez Holidays</span>
                 </span>
-                <span className="flex items-center gap-1.5">
-                  <CalendarDays className="h-4 w-4" />
-                  <time dateTime={post.date}>{formatDate(post.date)}</time>
-                </span>
+                <time dateTime={post.date}>{formatDate(post.date)}</time>
                 {updated && (
                   <span>
                     Actualizado: <time dateTime={updated}>{formatDate(updated)}</time>
                   </span>
                 )}
-                <span className="flex items-center gap-1.5">
-                  <Clock className="h-4 w-4" /> {post.readingMinutes} min de lectura
-                </span>
+                <span>{post.readingMinutes} min de lectura</span>
               </div>
             </div>
           </div>
+          <div className="container mt-12 sm:mt-16">
+            <figure className="relative aspect-[4/3] max-h-[640px] w-full overflow-hidden bg-sand-200 sm:aspect-[21/9]">
+              <img src={post.image} alt={post.imageAlt} fetchPriority="high" decoding="async" className="absolute inset-0 h-full w-full object-cover" />
+            </figure>
+          </div>
         </header>
 
-        <div className="container">
-          <figure className="relative -mt-2 aspect-[16/9] max-h-[600px] w-full overflow-hidden rounded-[2rem] bg-muted shadow-[0_40px_80px_-40px_rgb(16_40_59/0.4)] md:-mt-6">
-            <img src={post.image} alt={post.imageAlt} fetchPriority="high" decoding="async" className="absolute inset-0 h-full w-full object-cover" />
-          </figure>
-        </div>
-
-        <div className="container mt-14 grid gap-14 lg:grid-cols-[minmax(0,1fr)_320px]">
-          <div className="min-w-0 max-w-3xl">
+        <div className="container mt-14 grid gap-14 sm:mt-20 lg:grid-cols-12 lg:gap-16">
+          <aside className="hidden lg:col-span-3 lg:block">
             {hasToc && (
-              <details className="group mb-10 rounded-[1.25rem] border border-border bg-card p-5 lg:hidden">
-                <summary className="flex items-center justify-between font-semibold text-ocean">
-                  <span className="flex items-center gap-2">
-                    <ListOrdered className="h-4 w-4 text-gold-ink" /> Contenido del artículo
-                  </span>
-                  <ChevronDown className="h-4 w-4 transition-transform group-open:rotate-180" />
+              <nav aria-label="Contenido del artículo" className="sticky top-32">
+                <p className="label mb-6 border-b border-ink/12 pb-4 text-ink">En este artículo</p>
+                <TableOfContents post={post} />
+              </nav>
+            )}
+          </aside>
+
+          <div className="min-w-0 lg:col-span-6">
+            {hasToc && (
+              <details className="group mb-12 border-y border-ink/12 py-5 lg:hidden">
+                <summary className="label flex items-center justify-between text-ink">
+                  Contenido del artículo
+                  <ChevronDown className="h-4 w-4 transition-transform group-open:rotate-180" strokeWidth={1.5} />
                 </summary>
-                <div className="mt-4">
+                <div className="mt-5">
                   <TableOfContents post={post} />
                 </div>
               </details>
@@ -103,39 +105,32 @@ function Article({ post }: { post: PostFull }) {
             <div className="article-content" dangerouslySetInnerHTML={{ __html: post.html }} />
 
             {post.faq.length > 0 && (
-              <section className="mt-16" aria-labelledby="preguntas-frecuentes">
-                <h2 id="preguntas-frecuentes" className="mb-6 text-4xl font-medium text-ocean">
+              <section className="mt-20" aria-labelledby="preguntas-frecuentes">
+                <p className="eyebrow">Resolvemos tus dudas</p>
+                <h2 id="preguntas-frecuentes" className="display mb-8 mt-6 text-4xl">
                   Preguntas frecuentes
                 </h2>
-                <div className="divide-y divide-border border-y border-border">
+                <div className="border-t border-ink/15">
                   {post.faq.map(item => (
-                    <details key={item.q} className="group py-1">
-                      <summary className="flex items-start justify-between gap-4 py-5">
-                        <h3 className="text-base font-semibold text-ocean md:text-lg" style={{ fontFamily: "var(--font-sans)" }}>
-                          {item.q}
-                        </h3>
-                        <Plus className="mt-1 h-4 w-4 flex-shrink-0 text-gold-ink transition-transform group-open:rotate-45" />
+                    <details key={item.q} className="group border-b border-ink/15">
+                      <summary className="flex items-start justify-between gap-5 py-5">
+                        <h3 className="font-display text-[1.2rem] font-light leading-snug text-ink">{item.q}</h3>
+                        <Plus className="mt-1 h-4 w-4 flex-shrink-0 text-sand-600 transition-transform group-open:rotate-45" strokeWidth={1.4} />
                       </summary>
-                      <p className="pb-5 leading-relaxed text-muted-foreground">{item.a}</p>
+                      <p className="pb-6 leading-[1.8] text-ink-500">{item.a}</p>
                     </details>
                   ))}
                 </div>
               </section>
             )}
 
-            <div className="mt-16">
+            <div className="mt-20">
               <BlogCta zone={post.zone} />
             </div>
           </div>
 
-          <aside className="hidden lg:block">
-            <div className="sticky top-28 space-y-6">
-              {hasToc && (
-                <nav aria-label="Contenido del artículo" className="rounded-[1.5rem] border border-border bg-card p-7">
-                  <p className="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground">En este artículo</p>
-                  <TableOfContents post={post} />
-                </nav>
-              )}
+          <aside className="hidden lg:col-span-3 lg:block">
+            <div className="sticky top-32">
               <BlogCta zone={post.zone} compact />
             </div>
           </aside>
@@ -143,14 +138,17 @@ function Article({ post }: { post: PostFull }) {
       </article>
 
       {related.length > 0 && (
-        <section className="container mt-24 pb-24" aria-labelledby="relacionados">
-          <h2 id="relacionados" className="mb-10 text-4xl font-medium text-ocean">
-            Artículos relacionados
-          </h2>
-          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-            {related.map(item => (
-              <PostCard key={item.slug} post={item} />
-            ))}
+        <section className="section mt-12 border-t border-ink/10 bg-ivory-50" aria-labelledby="relacionados">
+          <div className="container">
+            <p className="eyebrow">Sigue leyendo</p>
+            <h2 id="relacionados" className="display mb-14 mt-6 text-4xl sm:text-5xl">
+              Artículos relacionados
+            </h2>
+            <div className="grid gap-x-8 gap-y-14 sm:grid-cols-2 lg:grid-cols-3">
+              {related.map(item => (
+                <PostCard key={item.slug} post={item} />
+              ))}
+            </div>
           </div>
         </section>
       )}

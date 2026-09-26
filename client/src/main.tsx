@@ -1,14 +1,11 @@
 import { createRoot, hydrateRoot } from "react-dom/client";
 import App from "./App";
 import { matchRoute, normalizePath, preloadPath } from "./routes";
-// Self-hosted fonts (no request to Google Fonts): only the latin subsets and
-// weights the design uses.
-import "@fontsource-variable/dm-sans/wght.css";
-import "@fontsource/cormorant-garamond/latin-400.css";
-import "@fontsource/cormorant-garamond/latin-500.css";
-import "@fontsource/cormorant-garamond/latin-600.css";
-import "@fontsource/cormorant-garamond/latin-400-italic.css";
-import "@fontsource/cormorant-garamond/latin-500-italic.css";
+// Self-hosted fonts (no request to Google Fonts): Fraunces with its optical
+// size axis for headings and Manrope for text, latin subsets only.
+import "@fontsource-variable/fraunces/opsz.css";
+import "@fontsource-variable/fraunces/opsz-italic.css";
+import "@fontsource-variable/manrope/wght.css";
 import "./index.css";
 
 /** Shows `.reveal` blocks as they scroll into view (see index.css). */

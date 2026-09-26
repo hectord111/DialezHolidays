@@ -1,58 +1,59 @@
-import { MessageCircle, Phone } from "lucide-react";
 import { PHONE_DISPLAY, PHONE_HREF, whatsappUrl } from "@/lib/contact";
 import { trackEvent } from "@/lib/tracking";
 import EstimateForm from "./EstimateForm";
 
-/** Cierre de página: foto de la villa + formulario de estimación por WhatsApp. */
+/** Closing section: photograph + estimate form (sent through WhatsApp). */
 export default function FinalCta({
   lang = "es",
   title,
   text,
   id = "contacto",
+  image = "/images/villa-piscina-tenerife.webp",
 }: {
   lang?: "es" | "en";
   title?: string;
   text?: string;
   id?: string;
+  image?: string;
 }) {
   const en = lang === "en";
   return (
-    <section id={id} className="relative overflow-hidden bg-ocean-deep text-white" aria-labelledby={`${id}-title`}>
-      <img src="/images/villa-piscina-tenerife.webp" alt="" loading="lazy" decoding="async" className="absolute inset-0 h-full w-full object-cover opacity-45" />
-      <div className="absolute inset-0 bg-gradient-to-r from-ocean-deep via-ocean-deep/85 to-ocean-deep/40" />
-      <div className="container relative grid items-center gap-12 py-24 md:py-32 lg:grid-cols-2 lg:gap-20">
-        <div className="reveal">
-          <span className="eyebrow eyebrow-light">{en ? "Free estimate" : "Estimación gratuita"}</span>
-          <h2 id={`${id}-title`} className="mt-5 text-4xl font-medium leading-[1.05] md:text-6xl">
-            {title ?? (en ? "Find out what your property could earn" : "Descubre cuánto puede generar tu vivienda")}
-          </h2>
-          <p className="mt-6 max-w-lg text-lg leading-relaxed text-white/75">
-            {text ??
-              (en
-                ? "Tell us about your property and we will send you a realistic income estimate and a management proposal, free of charge and with no obligation."
-                : "Cuéntanos cómo es tu vivienda y te enviamos una estimación realista de ingresos y una propuesta de gestión, gratis y sin compromiso.")}
-          </p>
-          <div className="mt-9 flex flex-wrap gap-4">
+    <section id={id} className="bg-sand-100" aria-labelledby={`${id}-title`}>
+      <div className="grid lg:grid-cols-2">
+        <div className="relative min-h-[22rem] overflow-hidden sm:min-h-[30rem]">
+          <img src={image} alt="" loading="lazy" decoding="async" className="absolute inset-0 h-full w-full object-cover" />
+        </div>
+        <div className="px-5 py-20 sm:px-12 lg:px-16 lg:py-28 xl:px-24">
+          <div className="reveal max-w-xl">
+            <p className="eyebrow">{en ? "Free estimate" : "Estimación gratuita"}</p>
+            <h2 id={`${id}-title`} className="display mt-7 text-[2.1rem] sm:mt-9 sm:text-5xl">
+              {title ?? (en ? "Let your home earn. Without the noise." : "Deja que tu vivienda rinda. Sin preocupaciones.")}
+            </h2>
+            <p className="mt-6 text-[1.02rem] leading-[1.8] text-ink-500">
+              {text ??
+                (en
+                  ? "Tell us about your property and we will send you a realistic income estimate and a management proposal, free of charge and with no obligation."
+                  : "Cuéntanos cómo es tu vivienda y te enviamos una estimación realista de ingresos y una propuesta de gestión, gratis y sin compromiso.")}
+            </p>
+          </div>
+          <div className="reveal mt-12 max-w-xl border-t border-ink/15 pt-10">
+            <EstimateForm lang={lang} />
+          </div>
+          <div className="reveal mt-10 flex max-w-xl flex-wrap items-center gap-x-8 gap-y-4">
             <a
               href={whatsappUrl(en ? "Hi, I'd like a free income estimate for my property in Tenerife." : undefined)}
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => trackEvent("Lead", { content_name: "CTA final WhatsApp" })}
-              className="btn btn-whatsapp"
+              className="text-link"
             >
-              <MessageCircle className="h-5 w-5" /> WhatsApp
+              {en ? "Chat on WhatsApp" : "Hablar por WhatsApp"}
             </a>
-            <a href={PHONE_HREF} onClick={() => trackEvent("Contact", { method: "phone_cta" })} className="btn btn-ghost-light">
-              <Phone className="h-5 w-5" /> {PHONE_DISPLAY}
+            <a href={PHONE_HREF} onClick={() => trackEvent("Contact", { method: "phone_cta" })} className="text-link">
+              {en ? "Call" : "Llamar"} · {PHONE_DISPLAY}
             </a>
           </div>
-        </div>
-        <div className="reveal rounded-[2rem] bg-background p-6 text-foreground shadow-2xl sm:p-10">
-          <p className="font-display text-3xl font-medium text-ocean">{en ? "Your property in 30 seconds" : "Tu vivienda en 30 segundos"}</p>
-          <p className="mb-7 mt-2 text-sm text-muted-foreground">
-            {en ? "Answer three questions and send them to us on WhatsApp." : "Responde tres preguntas y envíanoslas por WhatsApp."}
-          </p>
-          <EstimateForm lang={lang} />
+          <p className="label mt-10 text-ink-400">{en ? "No obligation · In person · Clear proposal" : "Sin compromiso · Equipo local · Propuesta clara"}</p>
         </div>
       </div>
     </section>

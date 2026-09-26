@@ -4,58 +4,75 @@
  * Keywords: holiday rental management Tenerife, Airbnb management Tenerife,
  * property management company Tenerife.
  */
-import { ArrowRight, BarChart3, Globe2, LineChart, MessageCircle, MessagesSquare, ShieldCheck, Sparkles } from "lucide-react";
+import { BarChart3, Camera, ClipboardCheck, Globe2, KeyRound, LineChart, MessagesSquare, ScrollText, Sparkles } from "lucide-react";
+import Comparison from "@/components/Comparison";
 import FaqSection from "@/components/FaqSection";
 import FinalCta from "@/components/FinalCta";
 import IncomeCalculator from "@/components/IncomeCalculator";
 import Layout from "@/components/Layout";
 import PricingBlock from "@/components/PricingBlock";
 import SectionHeading from "@/components/SectionHeading";
+import Timeline from "@/components/Timeline";
 import ZoneCards from "@/components/ZoneCards";
 import { HERO_IMAGES } from "@/data/images";
+import type { Benefit } from "@/data/service";
 import { MANAGEMENT_FEE_PERCENT, whatsappUrl } from "@/lib/contact";
 import { trackEvent } from "@/lib/tracking";
 
 const WHATSAPP_EN = "Hi, I'd like to know more about holiday rental management for my property in Tenerife.";
+const delay = (ms: number) => ({ "--rise-delay": `${ms}ms` }) as React.CSSProperties;
 
-const BENEFITS = [
+const FACTS = [
+  { value: `${MANAGEMENT_FEE_PERCENT}%`, label: "From, per confirmed booking" },
+  { value: "€0", label: "Fixed monthly fees" },
+  { value: "3", label: "Platforms: Airbnb, Booking, Vrbo" },
+  { value: "Local", label: "Team on the island" },
+];
+
+const BENEFITS: Benefit[] = [
   {
     icon: LineChart,
-    title: "Higher nightly rates",
-    text: "We adjust your price every day to the season, island events, booking window and competition, so you neither leave nights empty nor give them away in high season.",
+    title: "A price that follows the island",
+    usual: "A fixed nightly rate, or one reviewed by hand now and then.",
+    ours: "Dynamic pricing reviewed every day for season, island events, booking window and competition.",
   },
   {
     icon: Globe2,
     title: "More visibility, more bookings",
-    text: "Your property is listed on Airbnb, Booking.com and Vrbo at the same time, with synced calendars, professional photos and listings in several languages.",
+    usual: "One listing on one platform, often in a single language.",
+    ours: "Airbnb, Booking.com and Vrbo at once, with synced calendars, professional photos and multilingual listings.",
   },
   {
     icon: MessagesSquare,
-    title: "No more late-night calls",
-    text: "We answer every guest before, during and after their stay, in several languages. You don't have to keep an eye on your phone.",
+    title: "Guests looked after, you at ease",
+    usual: "Messages and calls at any hour, even on your own holidays.",
+    ours: "We look after every guest before, during and after their stay, in several languages.",
   },
   {
     icon: Sparkles,
-    title: "Looked after like a hotel",
-    text: "Professional cleaning and laundry between stays, an inspection after every check-out and preventive maintenance.",
+    title: "Cared for like a hotel",
+    usual: "Finding cleaners and repairers, and checking everything is right.",
+    ours: "Professional cleaning and laundry, an inspection after every check-out and incidents handled by our local team.",
   },
   {
-    icon: ShieldCheck,
-    title: "Peace of mind with the law",
-    text: "We help with the holiday rental licence (VV), guest registration and the Canary Islands rules, which changed with Law 6/2025.",
+    icon: ScrollText,
+    title: "The rules, taken care of",
+    usual: "Working through Law 6/2025, the VV licence and guest registration on your own.",
+    ours: "We help with the holiday rental licence and handle guest registration for every stay.",
   },
   {
     icon: BarChart3,
-    title: "Full transparency",
-    text: "A monthly report with bookings, income and costs. Block dates whenever you want to enjoy your home.",
+    title: "Everything in view",
+    usual: "Figures spread across platforms, statements and spreadsheets.",
+    ours: "A monthly report with bookings, income and costs. Block dates to use your home whenever you like.",
   },
 ];
 
 const PROCESS = [
-  { step: "01", title: "Free estimate", text: "Tell us about your property. We check its potential and licence situation and send you an income estimate, with no obligation." },
-  { step: "02", title: "Set-up", text: "We review equipment and safety, organise the photo shoot, create your listings and set up pricing." },
-  { step: "03", title: "Day-to-day", text: "Bookings, guests, check-ins, cleaning, laundry and maintenance: we take care of everything." },
-  { step: "04", title: "You get paid", text: "Receive your income and a clear monthly report. Want to use your home? We block the dates." },
+  { step: "01", icon: ClipboardCheck, title: "Free estimate", text: "Tell us about your property. We check its potential and licence situation and send you an income estimate, with no obligation." },
+  { step: "02", icon: Camera, title: "Set-up", text: "We review equipment and safety, organise the photo shoot, create your listings and set up pricing." },
+  { step: "03", icon: KeyRound, title: "Day-to-day", text: "Bookings, guests, check-ins, cleaning, laundry and maintenance: we take care of everything." },
+  { step: "04", icon: BarChart3, title: "You get paid", text: "Receive your income and a clear monthly report. Want to use your home? We block the dates." },
 ];
 
 const FAQS = [
@@ -87,7 +104,7 @@ const FAQS = [
 export default function HomeEN() {
   return (
     <Layout overlay lang="en" whatsappText={WHATSAPP_EN}>
-      <section className="relative flex min-h-[100svh] items-end overflow-hidden bg-ocean-deep text-white">
+      <section className="relative isolate flex min-h-[100svh] flex-col overflow-hidden bg-ivory">
         <picture>
           <source media="(max-width: 767px)" srcSet={HERO_IMAGES.mobile} type="image/webp" />
           <img
@@ -97,120 +114,114 @@ export default function HomeEN() {
             decoding="async"
             width={2400}
             height={1358}
-            className="animate-slow-zoom absolute inset-0 h-full w-full object-cover object-center"
+            className="drift absolute inset-0 -z-10 h-full w-full object-cover object-[70%_50%]"
           />
         </picture>
-        <div className="absolute inset-0 bg-gradient-to-r from-ocean-deep/85 via-ocean-deep/45 to-transparent" />
-        <div className="absolute inset-0 bg-gradient-to-t from-ocean-deep/90 via-transparent to-ocean-deep/40" />
-        <div className="absolute inset-0 bg-ocean-deep/25 md:hidden" />
-        <div className="container relative pb-14 pt-36 md:pb-20">
+        <div aria-hidden className="absolute inset-0 -z-10 bg-gradient-to-b from-ivory/95 via-ivory/75 to-ivory/10 md:bg-gradient-to-r md:from-ivory md:via-ivory/70 md:to-ivory/0" />
+        <div aria-hidden className="absolute inset-0 -z-10 hidden bg-gradient-to-b from-ivory/60 via-transparent to-ivory/40 md:block" />
+
+        <div className="container flex flex-1 flex-col justify-center pb-12 pt-[calc(var(--header-height)+2.5rem)] sm:pb-16 sm:pt-[calc(var(--header-height)+4rem)]">
           <div className="max-w-3xl">
             <h1>
-              <span className="eyebrow eyebrow-light animate-fade-up">Holiday rental management in Tenerife</span>
-              <span className="animate-fade-up delay-1 mt-6 block font-display text-[2.9rem] font-medium leading-[1.02] sm:text-6xl lg:text-[4.6rem] xl:text-[5rem]">
-                Your Tenerife home, earning for you. <em className="font-normal text-gold">We take care of everything.</em>
+              <span className="eyebrow rise" style={delay(150)}>
+                Holiday rental management · Tenerife
+              </span>
+              <span className="display rise mt-7 block text-[2.55rem] leading-[1.02] sm:mt-9 sm:text-6xl lg:text-[5.4rem]" style={delay(300)}>
+                <span className="block">Your Tenerife home,</span>
+                <span className="block italic text-sea">in the best hands.</span>
               </span>
             </h1>
-            <p className="animate-fade-up delay-2 mt-7 max-w-2xl text-lg leading-relaxed text-white/85 md:text-xl">
-              Airbnb and holiday rental management on the island: listings on Airbnb, Booking.com and Vrbo, guests, cleaning, maintenance, licensing and
-              dynamic pricing. From {MANAGEMENT_FEE_PERCENT}% per booking, with no fixed fees.
+            <p className="rise mt-7 max-w-xl text-[1.02rem] leading-[1.75] text-ink-700 sm:mt-9 sm:text-[1.1rem]" style={delay(500)}>
+              Airbnb and holiday rental management on the island: listings, guests, cleaning, maintenance, licensing and pricing. We take care of everything.
+              You simply receive the income.
             </p>
-            <div className="animate-fade-up delay-3 mt-9 flex flex-wrap gap-4">
-              <a href="#calculator" className="btn btn-gold">
-                Estimate your income <ArrowRight className="h-4 w-4" />
+            <div className="rise mt-9 flex flex-col gap-3 sm:mt-11 sm:flex-row sm:items-center" style={delay(650)}>
+              <a href="#calculator" className="btn btn-ink">
+                Estimate your income
               </a>
               <a
                 href={whatsappUrl(WHATSAPP_EN)}
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => trackEvent("Lead", { content_name: "WhatsApp Hero EN" })}
-                className="btn btn-ghost-light"
+                className="btn btn-outline bg-ivory/40 backdrop-blur-sm"
               >
-                <MessageCircle className="h-5 w-5" /> Chat on WhatsApp
+                Chat with us on WhatsApp
               </a>
             </div>
           </div>
         </div>
-      </section>
 
-      <section id="benefits" className="section scroll-mt-16">
-        <div className="container">
-          <SectionHeading
-            eyebrow="Why us"
-            title="The benefits of letting us manage your holiday home"
-            intro="A well-managed holiday rental is not the one with the most bookings, but the one that earns the most with the fewest worries for its owner."
-          />
-          <ol className="mt-16 grid gap-x-10 gap-y-14 sm:grid-cols-2 lg:grid-cols-3">
-            {BENEFITS.map((benefit, i) => (
-              <li key={benefit.title} className="reveal">
-                <div className="flex items-center gap-4">
-                  <span className="font-display text-lg text-gold-ink">{String(i + 1).padStart(2, "0")}</span>
-                  <span className="h-px flex-1 bg-border" />
-                  <benefit.icon className="h-6 w-6 text-ocean" strokeWidth={1.4} />
-                </div>
-                <h3 className="mt-6 text-[1.9rem] font-medium leading-tight text-ocean">{benefit.title}</h3>
-                <p className="mt-3 leading-relaxed text-muted-foreground">{benefit.text}</p>
-              </li>
+        <div className="rise border-t border-ink/10 bg-ivory/75 backdrop-blur-md" style={delay(850)}>
+          <dl className="container grid grid-cols-2 lg:grid-cols-4">
+            {FACTS.map((fact, i) => (
+              <div
+                key={fact.label}
+                className={`flex flex-col gap-1.5 py-5 sm:gap-2 sm:py-6 lg:py-8 ${i % 2 === 0 ? "pr-5" : "border-l border-ink/10 pl-5 sm:pl-8"} ${
+                  i >= 2 ? "border-t border-ink/10 lg:border-t-0" : ""
+                } ${i === 2 ? "lg:border-l lg:pl-8" : ""}`}
+              >
+                <dt className="label order-2 leading-snug text-ink-500">{fact.label}</dt>
+                <dd className="order-1 font-display text-[1.75rem] font-light text-ink sm:text-3xl lg:text-4xl">{fact.value}</dd>
+              </div>
             ))}
-          </ol>
+          </dl>
         </div>
       </section>
 
-      <section id="pricing" className="section scroll-mt-16 bg-sand">
+      <section id="benefits" className="section bg-mist">
         <div className="container">
-          <SectionHeading center eyebrow="Our fee" title="One clear fee: we only earn when you do" />
-          <div className="mt-16">
-            <PricingBlock lang="en" />
+          <SectionHeading eyebrow="Why us" size="xl" title="The benefits of letting us manage your home." />
+          <div className="mt-12 sm:mt-16 lg:mt-20">
+            <Comparison items={BENEFITS} usualLabel="If you manage it yourself" oursLabel="With Dialez Holidays" />
           </div>
         </div>
       </section>
 
-      <section id="calculator" className="relative scroll-mt-16 overflow-hidden bg-ocean text-white">
-        <div className="container grid items-center gap-14 py-24 md:py-32 lg:grid-cols-[0.85fr_1.15fr] lg:gap-20">
-          <SectionHeading
-            light
-            eyebrow="Calculator"
-            title="How much could your Tenerife property earn?"
-            intro="Move the nightly rate and occupancy to see what you would keep after our fee. For a figure tailored to your home, ask us for a free estimate."
-          />
-          <div className="reveal">
+      <section id="pricing" className="section bg-ivory-50">
+        <div className="container">
+          <PricingBlock lang="en" />
+        </div>
+      </section>
+
+      <section id="calculator" className="section border-y border-ink/10 bg-sand-100">
+        <div className="container grid items-center gap-14 lg:grid-cols-12 lg:gap-20">
+          <div className="lg:col-span-5">
+            <SectionHeading
+              eyebrow="Calculator"
+              title="How much could your Tenerife property earn?"
+              intro="Move the nightly rate and occupancy to see what you would keep after our fee. For a figure tailored to your home, ask us for a free estimate."
+            />
+          </div>
+          <div className="reveal lg:col-span-7">
             <IncomeCalculator lang="en" />
           </div>
         </div>
       </section>
 
-      <section className="section">
+      <section className="section bg-ivory">
         <div className="container">
-          <SectionHeading eyebrow="How it works" title="From your keys to your first booking in four steps" />
-          <ol className="relative mt-16 grid gap-12 md:grid-cols-2 lg:grid-cols-4 lg:gap-8">
-            <span aria-hidden className="absolute left-0 right-0 top-[1.9rem] hidden h-px bg-gradient-to-r from-gold via-gold/40 to-transparent lg:block" />
-            {PROCESS.map(step => (
-              <li key={step.step} className="reveal relative">
-                <span className="relative flex h-[3.8rem] w-[3.8rem] items-center justify-center rounded-full border border-gold bg-background font-display text-2xl text-gold-ink">
-                  {step.step}
-                </span>
-                <h3 className="mt-7 text-3xl font-medium text-ocean">{step.title}</h3>
-                <p className="mt-3 leading-relaxed text-muted-foreground">{step.text}</p>
-              </li>
-            ))}
-          </ol>
+          <SectionHeading eyebrow="How it works" size="xl" title="From your keys to your first booking." />
+          <div className="mt-14 lg:mt-24">
+            <Timeline steps={PROCESS} />
+          </div>
         </div>
       </section>
 
-      <section id="areas" className="section scroll-mt-16 bg-sand">
+      <section id="areas" className="section bg-mist">
         <div className="container">
           <SectionHeading
             eyebrow="The whole island"
-            title="Holiday rental management across Tenerife"
+            title="Holiday rental management across Tenerife."
             intro="From the luxury of Costa Adeje to the charm of Puerto de la Cruz: every area has its own guests, season and rules. We know them."
           />
-          <div className="mt-14">
+          <div className="mt-14 sm:mt-20">
             <ZoneCards lang="en" />
           </div>
         </div>
       </section>
 
-      <FaqSection faqs={FAQS} eyebrow="Questions" title="Frequently asked questions" id="faq" />
+      <FaqSection faqs={FAQS} className="bg-ivory" eyebrow="Questions" title="Frequently asked questions." id="faq" />
 
       <FinalCta lang="en" id="contact" />
     </Layout>

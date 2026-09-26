@@ -1,73 +1,72 @@
 /* =============================================================================
    DIALEZ HOLIDAYS — gestión de alquiler vacacional en Tenerife
-   Dirección de arte: hotel boutique atlántico.
-   - Tinta océano profundo (navy) sobre arena clara.
-   - Oro champán solo para detalles (filetes, cifras, eyebrows).
-   - Titulares en Cormorant Garamond, texto en DM Sans.
+   Dirección de arte: editorial de hotel boutique (hermana clara de
+   dubialez.com). Marfil y arena de fondo, tinta petróleo para el texto,
+   un gris atlántico para dar frescor. Fraunces fina para los titulares,
+   Manrope para el texto, etiquetas en versalitas espaciadas, botones de
+   esquina recta y filetes finos en lugar de sombras.
    ============================================================================= */
 
 @import "tailwindcss";
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --color-card: var(--card);
-  --color-primary: var(--primary);
-  --color-primary-foreground: var(--primary-foreground);
-  --color-muted: var(--muted);
-  --color-muted-foreground: var(--muted-foreground);
-  --color-border: var(--border);
-  --color-ocean: var(--ocean);
-  --color-ocean-deep: var(--ocean-deep);
-  --color-sand: var(--sand);
-  --color-sand-dark: var(--sand-dark);
-  --color-gold: var(--gold);
-  --color-gold-ink: var(--gold-ink);
-  --color-sea: var(--sea);
+@theme {
+  --color-ivory: #f7f3ec;
+  --color-ivory-50: #fcfaf6;
+  --color-ivory-200: #efe8dc;
+
+  --color-sand-100: #f1e9dc;
+  --color-sand-200: #e8dcc6;
+  --color-sand-300: #d8c7a5;
+  --color-sand-400: #c4ae82;
+  --color-sand-500: #a98f61;
+  --color-sand-600: #86704a;
+
+  /* Atlantic mist: the light, cool counterpoint to the sand. */
+  --color-mist: #e9eeec;
+  --color-mist-200: #dbe4e1;
+
+  --color-ink: #16282c;
+  --color-ink-700: #243a3e;
+  --color-ink-500: #4b5f63;
+  --color-ink-400: #6c7e81;
+  --color-ink-300: #9aa8aa;
+
+  --color-sea: #2d6268;
   --color-whatsapp: #25d366;
 
-  --font-display: "Cormorant Garamond", "Times New Roman", serif;
-  --font-sans: "DM Sans Variable", "DM Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-sans: "Manrope Variable", "Manrope", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-display: "Fraunces Variable", "Fraunces", "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+
+  --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 :root {
-  --background: oklch(0.985 0.006 85);
-  --foreground: oklch(0.23 0.035 235);
-  --card: oklch(1 0 0);
-  --primary: oklch(0.27 0.055 235);
-  --primary-foreground: oklch(0.985 0.006 85);
-  --muted: oklch(0.955 0.012 80);
-  --muted-foreground: oklch(0.47 0.03 235);
-  --border: oklch(0.9 0.014 80);
-  --ocean: oklch(0.27 0.055 235);
-  --ocean-deep: oklch(0.2 0.045 238);
-  --sand: oklch(0.965 0.014 82);
-  --sand-dark: oklch(0.93 0.02 80);
-  --gold: oklch(0.8 0.09 80);
-  --gold-ink: oklch(0.52 0.085 68);
-  --sea: oklch(0.72 0.09 195);
+  color-scheme: light;
+  --header-height: 4.75rem;
 }
 
 @layer base {
   * {
-    border-color: var(--border);
+    border-color: color-mix(in oklab, var(--color-ink) 12%, transparent);
   }
   html {
     scroll-behavior: smooth;
     -webkit-text-size-adjust: 100%;
   }
   body {
-    background: var(--background);
-    color: var(--foreground);
+    background: var(--color-ivory);
+    color: var(--color-ink);
     font-family: var(--font-sans);
+    font-feature-settings: "ss01", "cv11";
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
   }
   h1,
   h2,
-  h3 {
+  h3,
+  .font-display {
     font-family: var(--font-display);
-    letter-spacing: -0.01em;
+    font-optical-sizing: auto;
   }
   a[href],
   button:not(:disabled),
@@ -78,11 +77,15 @@
     cursor: pointer;
   }
   ::selection {
-    background: oklch(0.8 0.09 80 / 0.35);
+    background: var(--color-sand-200);
+    color: var(--color-ink);
   }
   :focus-visible {
-    outline: 2px solid var(--gold-ink);
+    outline: 2px solid var(--color-sea);
     outline-offset: 3px;
+  }
+  [id] {
+    scroll-margin-top: calc(var(--header-height) + 1rem);
   }
 }
 
@@ -91,143 +94,206 @@
     width: 100%;
     margin-inline: auto;
     padding-inline: 1.25rem;
-    max-width: 1280px;
+    max-width: 90rem;
   }
   @media (min-width: 640px) {
     .container {
       padding-inline: 2rem;
     }
   }
-
-  .font-display {
-    font-family: var(--font-display);
+  @media (min-width: 1024px) {
+    .container {
+      padding-inline: 3rem;
+    }
   }
 
-  /* Eyebrow: filete dorado + texto espaciado. */
+  .section {
+    padding-block: 5rem;
+  }
+  @media (min-width: 640px) {
+    .section {
+      padding-block: 6rem;
+    }
+  }
+  @media (min-width: 1024px) {
+    .section {
+      padding-block: 9rem;
+    }
+  }
+
+  /* Small uppercase label with a hairline in front of it. */
   .eyebrow {
-    font-family: var(--font-sans);
-    display: inline-flex;
+    display: flex;
     align-items: center;
-    gap: 0.85rem;
-    font-size: 0.75rem;
-    font-weight: 600;
-    letter-spacing: 0.22em;
+    gap: 0.9rem;
+    font-family: var(--font-sans);
+    font-size: 0.66rem;
+    font-weight: 500;
+    letter-spacing: 0.24em;
     text-transform: uppercase;
-    color: var(--gold-ink);
+    color: var(--color-sand-600);
   }
   .eyebrow::before {
     content: "";
     display: block;
-    width: 2.5rem;
+    flex-shrink: 0;
+    width: 1.75rem;
     height: 1px;
     background: currentColor;
+    opacity: 0.7;
   }
-  .eyebrow-light {
-    color: var(--gold);
+  @media (min-width: 640px) {
+    .eyebrow {
+      font-size: 0.7rem;
+      letter-spacing: 0.3em;
+      gap: 1rem;
+    }
+    .eyebrow::before {
+      width: 2.5rem;
+    }
   }
-
-  .section {
-    padding-block: 5.5rem;
+  .eyebrow-center {
+    justify-content: center;
   }
-  @media (min-width: 768px) {
-    .section {
-      padding-block: 7.5rem;
+  .eyebrow-center::after {
+    content: "";
+    display: block;
+    flex-shrink: 0;
+    width: 1.75rem;
+    height: 1px;
+    background: currentColor;
+    opacity: 0.7;
+  }
+  @media (min-width: 640px) {
+    .eyebrow-center::after {
+      width: 2.5rem;
     }
   }
 
+  /* Display headings: light Fraunces, tight tracking. */
+  .display {
+    font-family: var(--font-display);
+    font-weight: 300;
+    letter-spacing: -0.02em;
+    line-height: 1.06;
+    text-wrap: balance;
+  }
+
+  /* Square-cornered, letter-spaced buttons. */
   .btn {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 0.6rem;
-    border-radius: 999px;
-    padding: 0.95rem 1.75rem;
+    gap: 0.7rem;
+    min-height: 3.25rem;
+    padding: 0.9rem 1.6rem;
+    font-family: var(--font-sans);
+    font-size: 0.7rem;
     font-weight: 600;
-    font-size: 0.975rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
     line-height: 1.2;
+    text-align: center;
     transition:
-      transform 0.25s ease,
-      background-color 0.25s ease,
-      box-shadow 0.25s ease,
-      color 0.25s ease;
+      background-color 0.35s var(--ease-out-soft),
+      color 0.35s var(--ease-out-soft),
+      border-color 0.35s var(--ease-out-soft);
   }
-  .btn:hover {
-    transform: translateY(-2px);
+  @media (min-width: 640px) {
+    .btn {
+      padding-inline: 2rem;
+      font-size: 0.72rem;
+      letter-spacing: 0.22em;
+    }
   }
-  .btn-gold {
-    background: var(--gold);
-    color: var(--ocean-deep);
-    box-shadow: 0 10px 30px -12px oklch(0.8 0.09 80 / 0.7);
+  .btn-ink {
+    background: var(--color-ink);
+    color: var(--color-ivory);
   }
-  .btn-gold:hover {
-    background: oklch(0.84 0.085 82);
+  .btn-ink:hover {
+    background: var(--color-ink-700);
   }
-  .btn-ocean {
-    background: var(--ocean);
-    color: var(--primary-foreground);
+  .btn-outline {
+    border: 1px solid color-mix(in oklab, var(--color-ink) 40%, transparent);
+    color: var(--color-ink);
   }
-  .btn-ocean:hover {
-    background: var(--ocean-deep);
+  .btn-outline:hover {
+    border-color: var(--color-ink);
+    background: color-mix(in oklab, var(--color-ink) 4%, transparent);
   }
-  .btn-ghost-light {
-    border: 1px solid rgb(255 255 255 / 0.45);
-    color: white;
-    backdrop-filter: blur(6px);
-    background: rgb(255 255 255 / 0.06);
+  .btn-ivory {
+    background: var(--color-ivory-50);
+    color: var(--color-ink);
   }
-  .btn-ghost-light:hover {
-    background: rgb(255 255 255 / 0.14);
-  }
-  .btn-ghost-dark {
-    border: 1px solid var(--ocean);
-    color: var(--ocean);
-  }
-  .btn-ghost-dark:hover {
-    background: var(--ocean);
-    color: var(--primary-foreground);
+  .btn-ivory:hover {
+    background: var(--color-ivory-200);
   }
   .btn-whatsapp {
-    background: #25d366;
+    background: #1f9d55;
     color: white;
   }
   .btn-whatsapp:hover {
-    background: #1ebe5a;
+    background: #19854a;
   }
 
-  .glass {
-    background: rgb(255 255 255 / 0.1);
-    border: 1px solid rgb(255 255 255 / 0.2);
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
+  /* Underlined uppercase text link. */
+  .text-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    border-bottom: 1px solid color-mix(in oklab, var(--color-sand-500) 60%, transparent);
+    padding-bottom: 0.25rem;
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--color-ink);
+    transition: border-color 0.3s;
+  }
+  .text-link:hover {
+    border-color: var(--color-ink);
   }
 
-  .card {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 1.5rem;
+  /* Square icon frame. */
+  .icon-frame {
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+    width: 2.75rem;
+    height: 2.75rem;
+    border: 1px solid color-mix(in oklab, var(--color-sand-500) 55%, transparent);
+    color: var(--color-sand-600);
   }
 
-  /* Tarjetas de texto largo (FAQ, páginas legales). */
-  .prose-page p + p {
-    margin-top: 1rem;
+  /* Small uppercase data label. */
+  .label {
+    font-family: var(--font-sans);
+    font-size: 0.64rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+  }
+
+  .hairline {
+    border-color: color-mix(in oklab, var(--color-ink) 12%, transparent);
   }
 }
 
-/* ── Animaciones de entrada ─────────────────────────────────────────────────
-   El hero entra con CSS puro (no depende de JavaScript, mejor LCP). El resto
-   de bloques usa .reveal: solo se ocultan si hay JS (clase .js en <html>) y
-   main.tsx los muestra al entrar en pantalla. */
-@keyframes fade-up {
+/* ── Entrance animations ─────────────────────────────────────────────────
+   The hero uses pure CSS (no JavaScript needed, better LCP). The other
+   blocks use .reveal: hidden only when JS runs (.js on <html>), shown by
+   main.tsx as they scroll into view. */
+@keyframes rise {
   from {
     opacity: 0;
-    transform: translateY(22px);
+    transform: translateY(18px);
   }
   to {
     opacity: 1;
     transform: none;
   }
 }
-@keyframes slow-zoom {
+@keyframes drift {
   from {
     transform: scale(1.08);
   }
@@ -235,31 +301,21 @@
     transform: scale(1);
   }
 }
-.animate-fade-up {
-  animation: fade-up 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+.rise {
+  animation: rise 1.1s var(--ease-out-soft) both;
+  animation-delay: var(--rise-delay, 0ms);
 }
-.animate-slow-zoom {
-  animation: slow-zoom 9s cubic-bezier(0.22, 1, 0.36, 1) both;
-}
-.delay-1 {
-  animation-delay: 0.12s;
-}
-.delay-2 {
-  animation-delay: 0.24s;
-}
-.delay-3 {
-  animation-delay: 0.36s;
-}
-.delay-4 {
-  animation-delay: 0.5s;
+.drift {
+  animation: drift 14s var(--ease-out-soft) both;
 }
 
 .js .reveal {
   opacity: 0;
-  transform: translateY(26px);
+  transform: translateY(14px);
   transition:
-    opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1),
-    transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+    opacity 0.8s var(--ease-out-soft),
+    transform 0.8s var(--ease-out-soft);
+  transition-delay: var(--reveal-delay, 0ms);
 }
 .js .reveal.is-visible {
   opacity: 1;
@@ -270,8 +326,8 @@
   html {
     scroll-behavior: auto;
   }
-  .animate-fade-up,
-  .animate-slow-zoom {
+  .rise,
+  .drift {
     animation: none;
   }
   .js .reveal {
@@ -281,38 +337,48 @@
   }
 }
 
-/* Rango del calculador de ingresos */
+/* Phones: the bottom call-to-action bar replaces the floating WhatsApp
+   bubble, and the footer gets room so the bar never covers its last line. */
+@media (max-width: 1023.98px) {
+  html:has([data-mobile-cta]) [data-whatsapp-floating] {
+    display: none;
+  }
+  html:has([data-mobile-cta]) footer {
+    padding-bottom: 5.5rem;
+  }
+}
+
+/* Income calculator range */
 input[type="range"].range {
   -webkit-appearance: none;
   appearance: none;
   width: 100%;
-  height: 4px;
-  border-radius: 999px;
+  height: 2px;
   background: linear-gradient(
     to right,
-    var(--gold) 0%,
-    var(--gold) var(--fill, 50%),
-    rgb(255 255 255 / 0.2) var(--fill, 50%)
+    var(--color-ink) 0%,
+    var(--color-ink) var(--fill, 50%),
+    color-mix(in oklab, var(--color-ink) 15%, transparent) var(--fill, 50%)
   );
 }
 input[type="range"].range::-webkit-slider-thumb {
   -webkit-appearance: none;
-  width: 22px;
-  height: 22px;
+  width: 20px;
+  height: 20px;
   border-radius: 50%;
-  background: white;
-  border: 4px solid var(--gold);
-  box-shadow: 0 2px 10px rgb(0 0 0 / 0.3);
+  background: var(--color-ivory-50);
+  border: 1px solid var(--color-ink);
+  box-shadow: 0 0 0 5px var(--color-ivory-50);
 }
 input[type="range"].range::-moz-range-thumb {
-  width: 16px;
-  height: 16px;
+  width: 18px;
+  height: 18px;
   border-radius: 50%;
-  background: white;
-  border: 4px solid var(--gold);
+  background: var(--color-ivory-50);
+  border: 1px solid var(--color-ink);
 }
 
-/* FAQ con <details> */
+/* FAQ with <details> */
 details > summary {
   list-style: none;
 }
@@ -321,45 +387,46 @@ details > summary::-webkit-details-marker {
 }
 
 /* =============================================================================
-   BLOG — cuerpo de los artículos (HTML generado desde Markdown)
+   BLOG — article body (HTML generated from Markdown)
    ============================================================================= */
 .article-content {
   font-size: 1.0625rem;
-  line-height: 1.8;
-  color: oklch(0.3 0.035 235);
+  line-height: 1.85;
+  color: var(--color-ink-500);
 }
 .article-content > * + * {
-  margin-top: 1.25em;
+  margin-top: 1.3em;
 }
 .article-content h2 {
   font-family: var(--font-display);
   font-size: 2rem;
-  line-height: 1.15;
-  font-weight: 600;
-  color: var(--primary);
-  margin-top: 2.2em;
-  scroll-margin-top: 6rem;
+  line-height: 1.12;
+  font-weight: 300;
+  letter-spacing: -0.015em;
+  color: var(--color-ink);
+  margin-top: 2.4em;
+  padding-top: 1.2em;
+  border-top: 1px solid color-mix(in oklab, var(--color-ink) 10%, transparent);
 }
 .article-content h3 {
   font-family: var(--font-sans);
-  font-size: 1.2rem;
-  line-height: 1.35;
+  font-size: 1.1rem;
+  line-height: 1.4;
   font-weight: 700;
-  color: var(--primary);
-  margin-top: 1.8em;
-  scroll-margin-top: 6rem;
+  color: var(--color-ink);
+  margin-top: 1.9em;
 }
 .article-content h4 {
   font-weight: 700;
-  color: var(--primary);
+  color: var(--color-ink);
   margin-top: 1.5em;
 }
 .article-content h2 + *,
 .article-content h3 + * {
-  margin-top: 0.75em;
+  margin-top: 0.8em;
 }
 .article-content a {
-  color: var(--gold-ink);
+  color: var(--color-sea);
   font-weight: 500;
   text-decoration: underline;
   text-decoration-thickness: 1px;
@@ -369,12 +436,12 @@ details > summary::-webkit-details-marker {
   text-decoration-thickness: 2px;
 }
 .article-content strong {
-  color: oklch(0.2 0.04 235);
+  color: var(--color-ink);
   font-weight: 700;
 }
 .article-content ul,
 .article-content ol {
-  padding-left: 1.4em;
+  padding-left: 1.3em;
 }
 .article-content ul {
   list-style: disc;
@@ -383,68 +450,63 @@ details > summary::-webkit-details-marker {
   list-style: decimal;
 }
 .article-content li + li {
-  margin-top: 0.45em;
+  margin-top: 0.5em;
 }
 .article-content li::marker {
-  color: var(--gold-ink);
+  color: var(--color-sand-500);
   font-weight: 600;
 }
 .article-content blockquote {
-  border-left: 2px solid var(--gold);
-  background: var(--sand);
-  padding: 1em 1.25em;
-  border-radius: 0 1rem 1rem 0;
-  color: oklch(0.32 0.04 235);
-}
-.article-content blockquote > * + * {
-  margin-top: 0.75em;
+  border-left: 1px solid var(--color-sand-400);
+  padding: 0.2em 0 0.2em 1.4em;
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 300;
+  font-style: italic;
+  color: var(--color-ink);
 }
 .article-content hr {
   border: 0;
-  border-top: 1px solid var(--border);
+  border-top: 1px solid color-mix(in oklab, var(--color-ink) 12%, transparent);
   margin: 2.5em 0;
 }
 .article-content img {
-  border-radius: 1rem;
   width: 100%;
   height: auto;
 }
 .article-content .table-wrap {
   overflow-x: auto;
-  border: 1px solid var(--border);
-  border-radius: 1rem;
-  background: var(--card);
+  border-top: 1px solid var(--color-ink);
 }
 .article-content table {
   width: 100%;
   border-collapse: collapse;
-  font-size: 0.95rem;
-  line-height: 1.5;
+  font-size: 0.93rem;
+  line-height: 1.55;
 }
 .article-content th {
-  background: var(--ocean);
-  color: var(--primary-foreground);
+  color: var(--color-ink);
+  font-size: 0.66rem;
   font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
   text-align: left;
-  padding: 0.8em 1em;
+  padding: 1em 1em 0.9em 0;
   min-width: 7rem;
+  border-bottom: 1px solid color-mix(in oklab, var(--color-ink) 25%, transparent);
 }
 .article-content td {
-  padding: 0.75em 1em;
-  border-top: 1px solid var(--border);
+  padding: 0.9em 1em 0.9em 0;
+  border-bottom: 1px solid color-mix(in oklab, var(--color-ink) 10%, transparent);
   vertical-align: top;
-}
-.article-content tbody tr:nth-child(even) td {
-  background: oklch(0.985 0.006 85);
 }
 .article-content code {
   font-size: 0.9em;
-  background: var(--muted);
+  background: var(--color-sand-100);
   padding: 0.1em 0.35em;
-  border-radius: 0.3em;
 }
 @media (min-width: 768px) {
   .article-content h2 {
-    font-size: 2.4rem;
+    font-size: 2.5rem;
   }
 }

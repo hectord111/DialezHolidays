@@ -1,7 +1,10 @@
 import type { ReactNode } from "react";
 import Breadcrumbs from "./Breadcrumbs";
 
-/** Cabecera de las páginas interiores: foto a sangre, migas, H1 y entradilla. */
+/**
+ * Opening of the inner pages: breadcrumbs, eyebrow, light display H1 and
+ * intro on ivory, then a wide photograph.
+ */
 export default function PageHero({
   image,
   imageAlt,
@@ -20,19 +23,29 @@ export default function PageHero({
   children?: ReactNode;
 }) {
   return (
-    <section className="relative flex min-h-[78svh] items-end overflow-hidden bg-ocean-deep pb-16 pt-36 text-white md:pb-24">
-      <img src={image} alt={imageAlt} fetchPriority="high" decoding="async" className="animate-slow-zoom absolute inset-0 h-full w-full object-cover" />
-      <div className="absolute inset-0 bg-gradient-to-t from-ocean-deep via-ocean-deep/60 to-ocean-deep/20" />
-      <div className="absolute inset-0 bg-gradient-to-r from-ocean-deep/70 to-transparent" />
-      <div className="container relative">
-        <div className="animate-fade-up">
-          <Breadcrumbs items={breadcrumbs} light />
+    <section className="bg-ivory pt-10 sm:pt-14">
+      <div className="container">
+        <div className="rise">
+          <Breadcrumbs items={breadcrumbs} />
         </div>
-        <div className="mt-8 max-w-4xl">
-          <p className="eyebrow eyebrow-light animate-fade-up delay-1">{eyebrow}</p>
-          <h1 className="animate-fade-up delay-2 mt-5 text-5xl font-medium leading-[1.02] md:text-6xl lg:text-7xl">{title}</h1>
-          {intro && <p className="animate-fade-up delay-3 mt-7 max-w-2xl text-lg leading-relaxed text-white/80 md:text-xl">{intro}</p>}
-          {children && <div className="animate-fade-up delay-4 mt-9">{children}</div>}
+        <div className="mt-12 grid gap-10 sm:mt-16 lg:grid-cols-12 lg:items-end lg:gap-16">
+          <div className="lg:col-span-8">
+            <p className="eyebrow rise" style={{ "--rise-delay": "100ms" } as React.CSSProperties}>
+              {eyebrow}
+            </p>
+            <h1 className="display rise mt-7 text-[2.5rem] sm:mt-9 sm:text-6xl lg:text-[5rem]" style={{ "--rise-delay": "200ms" } as React.CSSProperties}>
+              {title}
+            </h1>
+          </div>
+          <div className="rise lg:col-span-4" style={{ "--rise-delay": "350ms" } as React.CSSProperties}>
+            {intro && <p className="text-[1.02rem] leading-[1.8] text-ink-500 sm:text-[1.06rem]">{intro}</p>}
+            {children && <div className="mt-8">{children}</div>}
+          </div>
+        </div>
+      </div>
+      <div className="rise container mt-14 sm:mt-20" style={{ "--rise-delay": "450ms" } as React.CSSProperties}>
+        <div className="relative aspect-[4/3] overflow-hidden bg-sand-200 sm:aspect-[21/9]">
+          <img src={image} alt={imageAlt} fetchPriority="high" decoding="async" className="drift absolute inset-0 h-full w-full object-cover" />
         </div>
       </div>
     </section>

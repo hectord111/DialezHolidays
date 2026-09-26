@@ -1,102 +1,109 @@
-import { ArrowRight, Check, MessageCircle } from "lucide-react";
+import { BadgeCheck, BarChart3, Camera, Globe2, KeyRound, LineChart, MessagesSquare, ScrollText, Sparkles, Wrench } from "lucide-react";
 import { MANAGEMENT_FEE_PERCENT, whatsappUrl } from "@/lib/contact";
 import { trackEvent } from "@/lib/tracking";
+import IconList, { type IconItem } from "./IconList";
 
-const INCLUDED_ES = [
-  "Estimación de ingresos y estudio de la licencia",
-  "Fotografía profesional y anuncios en varios idiomas",
-  "Airbnb, Booking y Vrbo con calendario sincronizado",
-  "Precios dinámicos revisados cada día",
-  "Atención a huéspedes antes, durante y después",
-  "Check-in y check-out",
-  "Coordinación de limpieza, lavandería y amenities",
-  "Mantenimiento e incidencias con equipo local",
-  "Registro de viajeros y ayuda con la licencia VV",
-  "Informe mensual de ingresos y ocupación",
-];
+const INCLUDED: Record<"es" | "en", IconItem[]> = {
+  es: [
+    { icon: Camera, label: "Fotografía profesional y anuncios" },
+    { icon: Globe2, label: "Airbnb, Booking y Vrbo sincronizados" },
+    { icon: LineChart, label: "Precios dinámicos cada día" },
+    { icon: MessagesSquare, label: "Atención a huéspedes en varios idiomas" },
+    { icon: KeyRound, label: "Check-in y check-out" },
+    { icon: Sparkles, label: "Limpieza, lavandería y amenities" },
+    { icon: Wrench, label: "Mantenimiento con equipo local" },
+    { icon: ScrollText, label: "Licencia VV y registro de viajeros" },
+    { icon: BadgeCheck, label: "Gestión de reseñas" },
+    { icon: BarChart3, label: "Informe mensual de ingresos" },
+  ],
+  en: [
+    { icon: Camera, label: "Professional photos and listings" },
+    { icon: Globe2, label: "Airbnb, Booking.com and Vrbo in sync" },
+    { icon: LineChart, label: "Dynamic pricing every day" },
+    { icon: MessagesSquare, label: "Multilingual guest communication" },
+    { icon: KeyRound, label: "Check-in and check-out" },
+    { icon: Sparkles, label: "Cleaning, laundry and amenities" },
+    { icon: Wrench, label: "Maintenance by a local team" },
+    { icon: ScrollText, label: "VV licence and guest registration" },
+    { icon: BadgeCheck, label: "Review management" },
+    { icon: BarChart3, label: "Monthly income report" },
+  ],
+};
 
-const INCLUDED_EN = [
-  "Income estimate and licence check",
-  "Professional photography and multilingual listings",
-  "Airbnb, Booking.com and Vrbo with synced calendars",
-  "Dynamic pricing reviewed every day",
-  "Guest communication before, during and after the stay",
-  "Check-in and check-out",
-  "Cleaning, laundry and amenities coordination",
-  "Maintenance and incidents handled by a local team",
-  "Guest registration and VV licence support",
-  "Monthly income and occupancy report",
-];
-
-/** Tarjeta de precio: la única tarifa publicada (desde el 15% por reserva). */
+/**
+ * The management fee as a single typographic moment, with what it covers.
+ * Rendered inside a section: the caller sets the background.
+ */
 export default function PricingBlock({ lang = "es", showDetailsLink = true }: { lang?: "es" | "en"; showDetailsLink?: boolean }) {
   const en = lang === "en";
-  const included = en ? INCLUDED_EN : INCLUDED_ES;
   return (
-    <div className="reveal grid overflow-hidden rounded-[2rem] border border-border bg-card shadow-[0_40px_80px_-40px_rgb(16_40_59/0.35)] lg:grid-cols-[0.9fr_1.1fr]">
-      <div className="relative flex flex-col justify-between overflow-hidden bg-ocean p-8 text-white sm:p-12">
-        <div
-          aria-hidden
-          className="pointer-events-none absolute -right-24 -top-24 h-72 w-72 rounded-full"
-          style={{ background: "radial-gradient(circle, oklch(0.8 0.09 80 / 0.28), transparent 70%)" }}
-        />
-        <div className="relative">
-          <p className="text-xs font-semibold uppercase tracking-[0.24em] text-gold">{en ? "Full management" : "Gestión integral"}</p>
-          <p className="mt-8 text-sm text-white/70">{en ? "From" : "Desde"}</p>
-          <p className="font-display text-[6.5rem] font-medium leading-none tracking-tight sm:text-[8rem]">
-            {MANAGEMENT_FEE_PERCENT}
-            <span className="align-top text-5xl text-gold sm:text-6xl">%</span>
-          </p>
-          <p className="mt-4 max-w-xs text-lg text-white/80">
-            {en ? "of each confirmed booking. That's all." : "de cada reserva confirmada. Nada más."}
-          </p>
-        </div>
-        <ul className="relative mt-10 grid gap-3 text-sm text-white/80">
+    <div className="grid gap-14 lg:grid-cols-12 lg:gap-20">
+      <div className="reveal lg:col-span-5">
+        <p className="eyebrow">{en ? "Our fee" : "Lo que cobramos"}</p>
+        <p className="mt-8 font-display text-[1rem] font-light text-ink-500 sm:mt-10">{en ? "From" : "Desde el"}</p>
+        <p className="font-display text-[8rem] font-extralight leading-[0.85] tracking-[-0.04em] text-ink sm:text-[10rem] lg:text-[12rem]">
+          {MANAGEMENT_FEE_PERCENT}
+          <span className="text-sand-500">%</span>
+        </p>
+        <p className="label mt-6 text-ink-500">{en ? "of each confirmed booking" : "de cada reserva confirmada"}</p>
+        <ul className="mt-10 space-y-3 border-t border-ink/12 pt-8 text-[0.95rem] text-ink-500">
           {(en
             ? ["€0 in fixed monthly fees", "No hidden costs", "Free, no-obligation income estimate"]
             : ["0 € de cuotas fijas mensuales", "Sin gastos ocultos", "Estimación de ingresos gratuita y sin compromiso"]
           ).map(item => (
-            <li key={item} className="flex items-center gap-3">
-              <span className="h-px w-5 bg-gold" /> {item}
+            <li key={item} className="flex items-center gap-4">
+              <span aria-hidden className="h-px w-5 bg-sand-500" /> {item}
             </li>
           ))}
         </ul>
       </div>
-      <div className="p-8 sm:p-12">
-        <p className="font-display text-3xl font-medium text-ocean">
-          {en ? "We only earn when you earn." : "Solo ganamos si tú ganas."}
-        </p>
-        <p className="mt-3 leading-relaxed text-muted-foreground">
-          {en
-            ? "No bookings, no fee. Our income depends on yours, so we are as interested as you are in filling your calendar at the best price."
-            : "Sin reservas, no hay comisión. Nuestros ingresos dependen de los tuyos, así que nos interesa tanto como a ti llenar tu calendario al mejor precio."}
-        </p>
-        <ul className="mt-8 grid gap-3 sm:grid-cols-2">
-          {included.map(item => (
-            <li key={item} className="flex gap-3 text-[0.95rem] leading-snug text-foreground/85">
-              <Check className="mt-0.5 h-4 w-4 flex-shrink-0 text-gold-ink" /> {item}
-            </li>
-          ))}
-        </ul>
-        <div className="mt-10 flex flex-wrap items-center gap-4">
+
+      <div className="flex flex-col justify-end lg:col-span-7">
+        <div className="reveal">
+          <h2 className="display text-[2.05rem] sm:text-5xl">
+            {en ? "One fee. Everything that matters, included." : "Una comisión. Todo lo importante, incluido."}
+          </h2>
+          <p className="mt-6 max-w-xl text-[1.02rem] leading-[1.8] text-ink-500">
+            {en
+              ? "No bookings, no fee. Our income depends on yours, so we are as interested as you are in filling your calendar at the best price."
+              : "Sin reservas, no hay comisión. Nuestros ingresos dependen de los tuyos, así que nos interesa tanto como a ti llenar tu calendario al mejor precio."}
+          </p>
+          <p className="label mt-10 text-sand-600">{en ? "Included in the management fee" : "Incluido en la comisión de gestión"}</p>
+        </div>
+        <div className="reveal mt-6 border-t border-ink/12 pt-8">
+          <IconList items={INCLUDED[lang]} columns={2} />
+        </div>
+        <div className="reveal mt-10 flex flex-col gap-8 sm:flex-row sm:items-end sm:justify-between">
+          <div className="max-w-md">
+            <p className="text-[0.82rem] leading-relaxed text-ink-400">
+              {en
+                ? "The property's own running costs (utilities, community fees, IBI, insurance), repairs and replacements, platform fees and taxes are separate from the management fee and are set out in the proposal."
+                : "Los gastos propios de la vivienda (suministros, comunidad, IBI, seguro), las reparaciones y reposiciones, las comisiones de las plataformas y los impuestos son independientes de la comisión y se detallan en la propuesta."}
+            </p>
+            {showDetailsLink && (
+              <div className="mt-6 flex flex-wrap gap-x-8 gap-y-4">
+                <a href="/tarifas" className="text-link">
+                  {en ? "Full pricing (ES)" : "Tarifas en detalle"}
+                </a>
+                <a href={en ? "#calculator" : "/#calculadora"} className="text-link">
+                  {en ? "Estimate your income" : "Calcula tus ingresos"}
+                </a>
+              </div>
+            )}
+          </div>
           <a
             href={whatsappUrl(
               en
-                ? "Hi, I'd like to know more about your holiday rental management fees in Tenerife."
-                : "Hola, me gustaría conocer vuestras condiciones de gestión de alquiler vacacional para mi vivienda."
+                ? "Hi, I'd like a management proposal for my holiday rental in Tenerife."
+                : "Hola, me gustaría recibir una propuesta de gestión para mi vivienda vacacional en Tenerife."
             )}
             target="_blank"
             rel="noopener noreferrer"
             onClick={() => trackEvent("Lead", { content_name: "Tarifa" })}
-            className="btn btn-ocean"
+            className="btn btn-ink shrink-0"
           >
-            <MessageCircle className="h-5 w-5" /> {en ? "Ask for a proposal" : "Pedir propuesta"}
+            {en ? "Ask for a proposal" : "Pedir propuesta"}
           </a>
-          {showDetailsLink && (
-            <a href="/tarifas" className="inline-flex items-center gap-2 text-sm font-semibold text-gold-ink hover:underline">
-              {en ? "Full pricing details (Spanish)" : "Ver tarifas en detalle"} <ArrowRight className="h-4 w-4" />
-            </a>
-          )}
         </div>
       </div>
     </div>

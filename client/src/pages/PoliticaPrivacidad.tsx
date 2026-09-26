@@ -15,15 +15,15 @@ const ADDRESS = "Calle Creu dels Molers 39, 08004 Barcelona, España";
 function Section({ title, children }: { title: string; children: ReactNode }) {
   return (
     <section>
-      <h2 className="mb-4 text-3xl font-medium text-ocean">{title}</h2>
-      <div className="space-y-4 leading-relaxed text-foreground/80">{children}</div>
+      <h2 className="display mb-5 text-[1.8rem] sm:text-[2.1rem]">{title}</h2>
+      <div className="space-y-4 leading-[1.8] text-ink-500">{children}</div>
     </section>
   );
 }
 
 function List({ items }: { items: ReactNode[] }) {
   return (
-    <ul className="list-disc space-y-2 pl-6 marker:text-gold-ink">
+    <ul className="list-disc space-y-2 pl-6 marker:text-sand-500">
       {items.map((item, i) => (
         <li key={i}>{item}</li>
       ))}
@@ -33,18 +33,18 @@ function List({ items }: { items: ReactNode[] }) {
 
 export default function PoliticaPrivacidad() {
   const mail = (
-    <a href={`mailto:${EMAIL}`} className="text-gold-ink underline-offset-2 hover:underline">
+    <a href={`mailto:${EMAIL}`} className="text-sea underline underline-offset-4">
       {EMAIL}
     </a>
   );
   return (
     <Layout>
-      <section className="bg-sand">
-        <div className="container max-w-4xl py-14 md:py-20">
+      <section className="border-b border-ink/10 bg-ivory">
+        <div className="container max-w-4xl pb-14 pt-10 sm:pb-20 sm:pt-14">
           <Breadcrumbs items={[{ label: "Inicio", href: "/" }, { label: "Política de privacidad" }]} />
-          <span className="eyebrow mt-10">Información legal</span>
-          <h1 className="mt-5 text-5xl font-medium text-ocean md:text-6xl">Política de privacidad</h1>
-          <p className="mt-5 text-muted-foreground">Última actualización: 26 de septiembre de 2026</p>
+          <p className="eyebrow mt-14">Información legal</p>
+          <h1 className="display mt-7 text-5xl sm:text-6xl">Política de privacidad</h1>
+          <p className="label mt-7 text-ink-400">Última actualización: 26 de septiembre de 2026</p>
         </div>
       </section>
 
@@ -55,8 +55,8 @@ export default function PoliticaPrivacidad() {
             digitales (LOPDGDD), te informamos de que los datos personales que nos facilites a través de este sitio web (holidays.dialezproperties.es), de WhatsApp,
             del teléfono o del correo electrónico serán tratados por:
           </p>
-          <div className="card space-y-1 p-6">
-            <p className="font-semibold text-ocean">{OWNER}</p>
+          <div className="space-y-1 border-y border-ink/12 py-6 text-ink">
+            <p className="font-semibold">{OWNER}</p>
             <p>Dialez Holidays, marca de Dialez Properties</p>
             <p>{ADDRESS}</p>
             <p>Correo electrónico: {mail}</p>
@@ -128,7 +128,7 @@ export default function PoliticaPrivacidad() {
           <p>
             Para ello, escríbenos a {mail} o por correo postal a {ADDRESS}, con el asunto «Protección de datos» y una copia de tu documento de identidad. Si
             consideras que no hemos atendido correctamente tus derechos, puedes reclamar ante la Agencia Española de Protección de Datos (
-            <a href="https://www.aepd.es" target="_blank" rel="noopener noreferrer" className="text-gold-ink underline-offset-2 hover:underline">
+            <a href="https://www.aepd.es" target="_blank" rel="noopener noreferrer" className="text-sea underline underline-offset-4">
               www.aepd.es
             </a>
             ).
