@@ -1,0 +1,33 @@
+# Publica los artículos programados del blog.
+#
+# Un artículo con `date` futura no se incluye en la web hasta que se vuelve a
+# generar ese día o después. La rutina semanal del blog ya redespliega al
+# publicar; este workflow es un respaldo que lanza cada mañana un
+# redespliegue en Vercel mediante un "Deploy Hook", así los artículos
+# programados salen en su fecha aunque ese día no haya ningún push.
+#
+# Configuración (una sola vez):
+#   1. Vercel > proyecto de Dialez Holidays > Settings > Git > Deploy Hooks:
+#      crea un hook para la rama de producción y copia la URL.
+#   2. GitHub > repositorio > Settings > Secrets and variables > Actions:
+#      crea el secreto VERCEL_DEPLOY_HOOK_URL con esa URL.
+name: Publicar artículos programados del blog
+
+on:
+  schedule:
+    - cron: "20 5 * * *" # todos los días a las 05:20 UTC
+  workflow_dispatch:
+
+jobs:
+  redeploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Lanzar redespliegue en Vercel
+        env:
+          DEPLOY_HOOK: ${{ secrets.VERCEL_DEPLOY_HOOK_URL }}
+        run: |
+          if [ -z "$DEPLOY_HOOK" ]; then
+            echo "Falta el secreto VERCEL_DEPLOY_HOOK_URL: no se lanza el redespliegue."
+            exit 0
+          fi
+          curl -fsS -X POST "$DEPLOY_HOOK"

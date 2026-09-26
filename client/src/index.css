@@ -1,0 +1,450 @@
+/* =============================================================================
+   DIALEZ HOLIDAYS — gestión de alquiler vacacional en Tenerife
+   Dirección de arte: hotel boutique atlántico.
+   - Tinta océano profundo (navy) sobre arena clara.
+   - Oro champán solo para detalles (filetes, cifras, eyebrows).
+   - Titulares en Cormorant Garamond, texto en DM Sans.
+   ============================================================================= */
+
+@import "tailwindcss";
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-border: var(--border);
+  --color-ocean: var(--ocean);
+  --color-ocean-deep: var(--ocean-deep);
+  --color-sand: var(--sand);
+  --color-sand-dark: var(--sand-dark);
+  --color-gold: var(--gold);
+  --color-gold-ink: var(--gold-ink);
+  --color-sea: var(--sea);
+  --color-whatsapp: #25d366;
+
+  --font-display: "Cormorant Garamond", "Times New Roman", serif;
+  --font-sans: "DM Sans Variable", "DM Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+:root {
+  --background: oklch(0.985 0.006 85);
+  --foreground: oklch(0.23 0.035 235);
+  --card: oklch(1 0 0);
+  --primary: oklch(0.27 0.055 235);
+  --primary-foreground: oklch(0.985 0.006 85);
+  --muted: oklch(0.955 0.012 80);
+  --muted-foreground: oklch(0.47 0.03 235);
+  --border: oklch(0.9 0.014 80);
+  --ocean: oklch(0.27 0.055 235);
+  --ocean-deep: oklch(0.2 0.045 238);
+  --sand: oklch(0.965 0.014 82);
+  --sand-dark: oklch(0.93 0.02 80);
+  --gold: oklch(0.8 0.09 80);
+  --gold-ink: oklch(0.52 0.085 68);
+  --sea: oklch(0.72 0.09 195);
+}
+
+@layer base {
+  * {
+    border-color: var(--border);
+  }
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    background: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+    letter-spacing: -0.01em;
+  }
+  a[href],
+  button:not(:disabled),
+  summary,
+  label[for],
+  select,
+  input[type="range"] {
+    cursor: pointer;
+  }
+  ::selection {
+    background: oklch(0.8 0.09 80 / 0.35);
+  }
+  :focus-visible {
+    outline: 2px solid var(--gold-ink);
+    outline-offset: 3px;
+  }
+}
+
+@layer components {
+  .container {
+    width: 100%;
+    margin-inline: auto;
+    padding-inline: 1.25rem;
+    max-width: 1280px;
+  }
+  @media (min-width: 640px) {
+    .container {
+      padding-inline: 2rem;
+    }
+  }
+
+  .font-display {
+    font-family: var(--font-display);
+  }
+
+  /* Eyebrow: filete dorado + texto espaciado. */
+  .eyebrow {
+    font-family: var(--font-sans);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.85rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold-ink);
+  }
+  .eyebrow::before {
+    content: "";
+    display: block;
+    width: 2.5rem;
+    height: 1px;
+    background: currentColor;
+  }
+  .eyebrow-light {
+    color: var(--gold);
+  }
+
+  .section {
+    padding-block: 5.5rem;
+  }
+  @media (min-width: 768px) {
+    .section {
+      padding-block: 7.5rem;
+    }
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    border-radius: 999px;
+    padding: 0.95rem 1.75rem;
+    font-weight: 600;
+    font-size: 0.975rem;
+    line-height: 1.2;
+    transition:
+      transform 0.25s ease,
+      background-color 0.25s ease,
+      box-shadow 0.25s ease,
+      color 0.25s ease;
+  }
+  .btn:hover {
+    transform: translateY(-2px);
+  }
+  .btn-gold {
+    background: var(--gold);
+    color: var(--ocean-deep);
+    box-shadow: 0 10px 30px -12px oklch(0.8 0.09 80 / 0.7);
+  }
+  .btn-gold:hover {
+    background: oklch(0.84 0.085 82);
+  }
+  .btn-ocean {
+    background: var(--ocean);
+    color: var(--primary-foreground);
+  }
+  .btn-ocean:hover {
+    background: var(--ocean-deep);
+  }
+  .btn-ghost-light {
+    border: 1px solid rgb(255 255 255 / 0.45);
+    color: white;
+    backdrop-filter: blur(6px);
+    background: rgb(255 255 255 / 0.06);
+  }
+  .btn-ghost-light:hover {
+    background: rgb(255 255 255 / 0.14);
+  }
+  .btn-ghost-dark {
+    border: 1px solid var(--ocean);
+    color: var(--ocean);
+  }
+  .btn-ghost-dark:hover {
+    background: var(--ocean);
+    color: var(--primary-foreground);
+  }
+  .btn-whatsapp {
+    background: #25d366;
+    color: white;
+  }
+  .btn-whatsapp:hover {
+    background: #1ebe5a;
+  }
+
+  .glass {
+    background: rgb(255 255 255 / 0.1);
+    border: 1px solid rgb(255 255 255 / 0.2);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+  }
+
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 1.5rem;
+  }
+
+  /* Tarjetas de texto largo (FAQ, páginas legales). */
+  .prose-page p + p {
+    margin-top: 1rem;
+  }
+}
+
+/* ── Animaciones de entrada ─────────────────────────────────────────────────
+   El hero entra con CSS puro (no depende de JavaScript, mejor LCP). El resto
+   de bloques usa .reveal: solo se ocultan si hay JS (clase .js en <html>) y
+   main.tsx los muestra al entrar en pantalla. */
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(22px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes slow-zoom {
+  from {
+    transform: scale(1.08);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+.animate-fade-up {
+  animation: fade-up 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+.animate-slow-zoom {
+  animation: slow-zoom 9s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+.delay-1 {
+  animation-delay: 0.12s;
+}
+.delay-2 {
+  animation-delay: 0.24s;
+}
+.delay-3 {
+  animation-delay: 0.36s;
+}
+.delay-4 {
+  animation-delay: 0.5s;
+}
+
+.js .reveal {
+  opacity: 0;
+  transform: translateY(26px);
+  transition:
+    opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.js .reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .animate-fade-up,
+  .animate-slow-zoom {
+    animation: none;
+  }
+  .js .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* Rango del calculador de ingresos */
+input[type="range"].range {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 4px;
+  border-radius: 999px;
+  background: linear-gradient(
+    to right,
+    var(--gold) 0%,
+    var(--gold) var(--fill, 50%),
+    rgb(255 255 255 / 0.2) var(--fill, 50%)
+  );
+}
+input[type="range"].range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: white;
+  border: 4px solid var(--gold);
+  box-shadow: 0 2px 10px rgb(0 0 0 / 0.3);
+}
+input[type="range"].range::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: white;
+  border: 4px solid var(--gold);
+}
+
+/* FAQ con <details> */
+details > summary {
+  list-style: none;
+}
+details > summary::-webkit-details-marker {
+  display: none;
+}
+
+/* =============================================================================
+   BLOG — cuerpo de los artículos (HTML generado desde Markdown)
+   ============================================================================= */
+.article-content {
+  font-size: 1.0625rem;
+  line-height: 1.8;
+  color: oklch(0.3 0.035 235);
+}
+.article-content > * + * {
+  margin-top: 1.25em;
+}
+.article-content h2 {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  line-height: 1.15;
+  font-weight: 600;
+  color: var(--primary);
+  margin-top: 2.2em;
+  scroll-margin-top: 6rem;
+}
+.article-content h3 {
+  font-family: var(--font-sans);
+  font-size: 1.2rem;
+  line-height: 1.35;
+  font-weight: 700;
+  color: var(--primary);
+  margin-top: 1.8em;
+  scroll-margin-top: 6rem;
+}
+.article-content h4 {
+  font-weight: 700;
+  color: var(--primary);
+  margin-top: 1.5em;
+}
+.article-content h2 + *,
+.article-content h3 + * {
+  margin-top: 0.75em;
+}
+.article-content a {
+  color: var(--gold-ink);
+  font-weight: 500;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+.article-content a:hover {
+  text-decoration-thickness: 2px;
+}
+.article-content strong {
+  color: oklch(0.2 0.04 235);
+  font-weight: 700;
+}
+.article-content ul,
+.article-content ol {
+  padding-left: 1.4em;
+}
+.article-content ul {
+  list-style: disc;
+}
+.article-content ol {
+  list-style: decimal;
+}
+.article-content li + li {
+  margin-top: 0.45em;
+}
+.article-content li::marker {
+  color: var(--gold-ink);
+  font-weight: 600;
+}
+.article-content blockquote {
+  border-left: 2px solid var(--gold);
+  background: var(--sand);
+  padding: 1em 1.25em;
+  border-radius: 0 1rem 1rem 0;
+  color: oklch(0.32 0.04 235);
+}
+.article-content blockquote > * + * {
+  margin-top: 0.75em;
+}
+.article-content hr {
+  border: 0;
+  border-top: 1px solid var(--border);
+  margin: 2.5em 0;
+}
+.article-content img {
+  border-radius: 1rem;
+  width: 100%;
+  height: auto;
+}
+.article-content .table-wrap {
+  overflow-x: auto;
+  border: 1px solid var(--border);
+  border-radius: 1rem;
+  background: var(--card);
+}
+.article-content table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+.article-content th {
+  background: var(--ocean);
+  color: var(--primary-foreground);
+  font-weight: 600;
+  text-align: left;
+  padding: 0.8em 1em;
+  min-width: 7rem;
+}
+.article-content td {
+  padding: 0.75em 1em;
+  border-top: 1px solid var(--border);
+  vertical-align: top;
+}
+.article-content tbody tr:nth-child(even) td {
+  background: oklch(0.985 0.006 85);
+}
+.article-content code {
+  font-size: 0.9em;
+  background: var(--muted);
+  padding: 0.1em 0.35em;
+  border-radius: 0.3em;
+}
+@media (min-width: 768px) {
+  .article-content h2 {
+    font-size: 2.4rem;
+  }
+}
