@@ -12,7 +12,9 @@ export default function Logo({ className = "" }: { className?: string }) {
       />
       <span className="flex flex-col leading-none">
         <span className="font-display text-[1.05rem] font-medium tracking-[0.28em] sm:text-[1.15rem]">DIALEZ</span>
-        <span className="mt-1.5 text-[0.56rem] font-semibold uppercase tracking-[0.5em] text-sand-600">Holidays</span>
+        <span className="mt-1.5 text-[0.66rem] font-semibold uppercase tracking-[0.36em] text-sand-600 sm:text-[0.72rem] sm:tracking-[0.38em]">
+          Holidays
+        </span>
       </span>
     </span>
   );
