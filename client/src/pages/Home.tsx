@@ -76,8 +76,11 @@ export default function Home() {
         <div className="container flex flex-1 flex-col justify-center pb-12 pt-[calc(var(--header-height)+2.5rem)] sm:pb-16 sm:pt-[calc(var(--header-height)+4rem)]">
           <div className="max-w-3xl">
             <h1>
-              <span className="eyebrow rise" style={delay(150)}>
-                Gestión de alquiler vacacional · Tenerife
+              <span className="eyebrow rise text-[0.82rem] tracking-[0.2em] sm:text-[0.98rem] sm:tracking-[0.22em] lg:text-[1.1rem]" style={delay(150)}>
+                <span>
+                  Gestión de alquiler vacacional<span className="max-sm:hidden"> ·</span> <br className="sm:hidden" />
+                  Tenerife
+                </span>
               </span>
               <span className="display rise mt-7 block text-[2.55rem] leading-[1.02] sm:mt-9 sm:text-6xl lg:text-[5.4rem]" style={delay(300)}>
                 <span className="block">Tu vivienda en Tenerife,</span>
