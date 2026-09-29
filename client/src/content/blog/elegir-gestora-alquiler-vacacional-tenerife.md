@@ -1,10 +1,10 @@
 ---
 title: "Cómo elegir una gestora de alquiler vacacional en Tenerife: 12 preguntas antes de firmar"
-seoTitle: "Gestora de alquiler vacacional en Tenerife: cómo elegir"
+seoTitle: "Cómo elegir gestora de alquiler vacacional en Tenerife"
 description: "Cómo elegir gestora de alquiler vacacional en Tenerife: qué debe incluir, cómo cobra y 12 preguntas para evaluar a cualquier empresa antes de firmar."
 date: 2026-09-25
 category: gestion
-keywords: [gestora alquiler vacacional Tenerife, empresa gestión Airbnb Tenerife, gestor Airbnb Tenerife, contrato gestión vivienda vacacional, comisión gestora alquiler vacacional]
+keywords: [cómo elegir gestora alquiler vacacional Tenerife, preguntas a una gestora de Airbnb, contrato gestión vivienda vacacional, comisión gestora alquiler vacacional]
 image: /images/terraza-vistas-mar-tenerife.webp
 imageAlt: "Terraza de una vivienda vacacional con sofás y desayuno servido en la mesa, frente a una costa de acantilados de Tenerife al atardecer"
 faq:

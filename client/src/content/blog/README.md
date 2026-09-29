@@ -130,6 +130,11 @@ nueva, cópiala en esa carpeta (`.webp` o `.jpg`, ~1600 px de ancho).
 - Una palabra clave principal por artículo, en `title`, `seoTitle`,
   `description`, la introducción y al menos un H2. No competir con otro
   artículo por la misma palabra clave.
+- No competir con las páginas de servicio: «gestión/gestora de alquiler
+  vacacional en Tenerife» (portada), «… en Canarias», «… en [zona]» y
+  «tarifas / precio de una gestora» (tarifas) son suyas. Si un artículo
+  toca ese tema, enfócalo como guía («cómo elegir…», «qué preguntar…») y
+  enlaza a la página de servicio.
 - 1.300-2.000 palabras, en español de España y tuteando, con H2/H3 claros,
   listas y alguna tabla, y una conclusión.
 - 2-4 enlaces internos a páginas de servicio y 1-2 a otros artículos.

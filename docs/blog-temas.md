@@ -6,6 +6,10 @@ una novedad importante (cambio de ley, sentencia, dato oficial), puede
 adelantarla y añadirla aquí como hecha. Cuando queden menos de 5 temas sin
 marcar, añade 10 nuevos al final (búsquedas reales de propietarios).
 
+Los temas de zona necesitan un ángulo propio (rentabilidad, temporada,
+eventos, tipo de huésped…): «gestión / alquiler vacacional en [zona]» es la
+palabra clave de la página de esa zona y el artículo no debe competir con ella.
+
 ## Publicados
 
 - [x] Ley de vivienda vacacional de Canarias (Ley 6/2025) para propietarios → ley-vivienda-vacacional-canarias
@@ -22,12 +26,12 @@ marcar, añade 10 nuevos al final (búsquedas reales de propietarios).
 - [ ] Alquiler vacacional para no residentes en Tenerife: IRNR, NIE y obligaciones (fiscalidad)
 - [ ] Registro de viajeros (SES.Hospedajes) en una vivienda vacacional: guía práctica (normativa)
 - [ ] Cómo preparar un apartamento para el alquiler vacacional en Tenerife: equipamiento y checklist (gestion)
-- [ ] Alquiler vacacional en Los Cristianos: estancias largas de invierno (zonas, zone: los-cristianos-playa-de-las-americas)
+- [ ] Estancias de invierno por meses en Los Cristianos: precios, descuentos y condiciones (zonas, zone: los-cristianos-playa-de-las-americas)
 - [ ] Fotos para Airbnb: cómo conseguir un anuncio que reserve más (gestion)
 - [ ] Vivienda vacacional o alquiler de temporada en Canarias tras la Ley 7/2026 (normativa)
 - [ ] Seguro para vivienda vacacional en Canarias: qué debe cubrir (normativa)
 - [ ] Check-in autónomo con cerradura inteligente: pros y contras en Tenerife (gestion)
-- [ ] Alquiler vacacional en Puerto de la Cruz y el norte de Tenerife (zonas, zone: puerto-de-la-cruz)
+- [ ] Norte o sur de Tenerife: dónde rinde más una vivienda vacacional (zonas, zone: puerto-de-la-cruz)
 - [ ] Cómo responder a una mala reseña en Airbnb o Booking (gestion)
 - [ ] Gastos deducibles del alquiler vacacional en la declaración de la renta (fiscalidad)
 - [ ] Comprar una vivienda para alquiler vacacional en Tenerife tras la nueva ley: qué comprobar (normativa)
@@ -35,5 +39,5 @@ marcar, añade 10 nuevos al final (búsquedas reales de propietarios).
 - [ ] Limpieza y lavandería en el alquiler vacacional: estándares y tiempos (gestion)
 - [ ] Rentabilidad de una villa con piscina en el sur de Tenerife (rentabilidad)
 - [ ] Qué hacer si tu comunidad de propietarios quiere prohibir el alquiler vacacional (normativa)
-- [ ] Alquiler vacacional en Santa Cruz de Tenerife: Carnaval, eventos y turismo urbano (zonas, zone: santa-cruz-de-tenerife)
-- [ ] Ballenas, acantilados y atardeceres: gestionar una vivienda en Los Gigantes (zonas, zone: los-gigantes)
+- [ ] Carnaval y eventos en Santa Cruz de Tenerife: cómo aprovecharlos en tu vivienda vacacional (zonas, zone: santa-cruz-de-tenerife)
+- [ ] Ballenas, acantilados y atardeceres: cómo presentar una vivienda de Los Gigantes en el anuncio (zonas, zone: los-gigantes)

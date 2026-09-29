@@ -3,7 +3,7 @@ export default function Logo({ className = "" }: { className?: string }) {
   return (
     <span className={`group inline-flex items-center gap-3 text-ink ${className}`}>
       <img
-        src="/images/logo.png"
+        src="/images/logo-108.png"
         alt=""
         width={36}
         height={36}

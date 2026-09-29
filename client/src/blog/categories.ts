@@ -22,7 +22,7 @@ export const CATEGORIES: CategoryDef[] = [
     name: "Normativa y licencias",
     title: "Normativa de vivienda vacacional en Tenerife y Canarias",
     description:
-      "Ley de vivienda vacacional de Canarias, licencias VV, comunidades de propietarios, registro de viajeros y todas las obligaciones legales del alquiler vacacional en Tenerife.",
+      "Ley de vivienda vacacional de Canarias, licencias VV, comunidades de propietarios, registro de viajeros y obligaciones legales del alquiler vacacional en Tenerife.",
   },
   {
     slug: "rentabilidad",
@@ -50,7 +50,7 @@ export const CATEGORIES: CategoryDef[] = [
     name: "Zonas de Tenerife",
     title: "Mejores zonas de Tenerife para alquiler vacacional",
     description:
-      "Costa Adeje, Los Cristianos, Puerto de la Cruz, Santa Cruz, El Médano o Los Gigantes: cómo es la demanda turística en cada zona de Tenerife y qué viviendas funcionan mejor.",
+      "Costa Adeje, Los Cristianos, Puerto de la Cruz, Santa Cruz, El Médano o Los Gigantes: la demanda turística de cada zona de Tenerife y qué viviendas funcionan mejor.",
   },
 ];
 
